@@ -83,7 +83,7 @@ export default function ProjectsPage() {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild className="bg-cyan-200 text-slate-950 hover:bg-cyan-100">
-              <a href={githubProfile.url} target="_blank" rel="noreferrer" aria-label="Open Arya's GitHub profile">
+              <a href={githubProfile.url} target="_blank" rel="noreferrer" aria-label="Open Arya's GitHub profile" data-cursor-target>
                 <FaGithub data-icon="inline-start" />
                 Open GitHub
               </a>
@@ -93,7 +93,7 @@ export default function ProjectsPage() {
               variant="outline"
               className="border-white/[0.12] bg-white/[0.04] text-slate-100 hover:bg-white/10 hover:text-slate-100"
             >
-              <Link to="/">
+              <Link to="/" data-cursor-target>
                 <ArrowLeft data-icon="inline-start" />
                 Back Home
               </Link>
@@ -108,7 +108,7 @@ export default function ProjectsPage() {
             ["Languages", languages.length],
             ["Active / School / Lab", `${activeCount} / ${schoolCount} / ${experimentCount}`],
           ].map(([label, value]) => (
-            <Card key={label} className="border-white/10 bg-white/[0.04] text-slate-100">
+            <Card key={label} className="spotlight-card border-white/10 bg-white/[0.04] text-slate-100">
               <CardHeader className="p-4">
                 <CardTitle className="font-['JetBrains_Mono'] text-[11px] uppercase tracking-[0.2em] text-slate-400">
                   {label}

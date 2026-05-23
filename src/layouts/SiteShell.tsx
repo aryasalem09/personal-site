@@ -1,4 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
+import CommandPalette from "@/components/CommandPalette";
+import SectionProgressRail from "@/components/SectionProgressRail";
 
 const navItems = [
   { href: "/#home", label: "Home" },
@@ -21,6 +23,7 @@ export default function SiteShell() {
                 <a
                   key={item.href}
                   href={item.href}
+                  data-cursor-target
                   className="rounded-full px-4 py-2 text-sm font-medium text-slate-200/78 outline-none transition hover:bg-white/10 hover:text-slate-100 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 >
                   {item.label}
@@ -29,6 +32,7 @@ export default function SiteShell() {
                 <NavLink
                   key={item.href}
                   to={item.href}
+                  data-cursor-target
                   className={({ isActive }) =>
                     [
                       "rounded-full px-4 py-2 text-sm font-medium outline-none transition hover:bg-white/10 hover:text-slate-100 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950",
@@ -44,10 +48,12 @@ export default function SiteShell() {
               href="https://github.com/aryasalem09"
               target="_blank"
               rel="noreferrer"
+              data-cursor-target
               className="rounded-full bg-white/[0.08] px-4 py-2 text-sm font-medium text-slate-100 outline-none transition hover:bg-white/[0.12] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               GitHub
             </a>
+            <CommandPalette />
           </nav>
         </div>
       </header>
@@ -55,6 +61,7 @@ export default function SiteShell() {
       <main className="relative z-10 flex-1">
         <Outlet />
       </main>
+      <SectionProgressRail />
     </div>
   );
 }

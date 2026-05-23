@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import ProjectCard from "@/components/projects/ProjectCard";
+import TerminalStatusPanel from "@/components/TerminalStatusPanel";
 import { Button } from "@/components/ui/button";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import { featuredProjects, githubProfile } from "@/content/github";
@@ -9,31 +10,43 @@ import { performances } from "@/content/performances";
 export default function HomePage() {
   return (
       <div>
-        <section id="home" className="slide scroll-mt-24">
-          <div className="slide-inner relative z-10 py-24 md:py-28">
-            <p className="kicker">by arya</p>
+        <section id="home" data-snap-section className="slide scroll-mt-24">
+          <div className="slide-inner relative z-10 grid gap-10 py-24 md:py-28 lg:grid-cols-[minmax(0,1fr)_390px] lg:items-center">
+            <div>
+              <p className="kicker">by arya</p>
 
-            <h1 className="title">
-              Welcome to my website
-            </h1>
+              <h1 className="title max-w-[11ch]">
+                Personal terminal for things I build
+              </h1>
 
-            <p className="subtitle mt-7 md:mt-8">
-              A personal site for projects, music, writing, and the things I am learning as I build.
-            </p>
+              <p className="subtitle mt-7 md:mt-8">
+                Projects, music, writing, and experiments from a student developer who likes fast interfaces with a bit
+                of signal noise.
+              </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <Link to="/projects" className="big-btn">
-                View Projects
-              </Link>
-              <Link to="/blog" className="ghost-btn">
-                Blog
-              </Link>
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <Link to="/projects" data-cursor-target className="big-btn magnetic-cta">
+                  View Projects
+                </Link>
+                <Link to="/blog" data-cursor-target className="ghost-btn magnetic-cta">
+                  Blog
+                </Link>
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-2 font-['JetBrains_Mono'] text-[11px] uppercase tracking-[0.18em] text-slate-400">
+                <span className="rounded-full border border-cyan-200/15 bg-cyan-200/[0.06] px-3 py-1.5">React</span>
+                <span className="rounded-full border border-lime-200/15 bg-lime-200/[0.06] px-3 py-1.5">Research</span>
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5">Quartet</span>
+              </div>
             </div>
+
+            <TerminalStatusPanel />
           </div>
 
           <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2">
             <a
                 href="/#projects"
+                data-cursor-target
                 className="inline-flex flex-col items-center gap-2 text-slate-200/72 outline-none transition hover:text-slate-100 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
               <span className="font-['JetBrains_Mono'] text-xs uppercase tracking-[0.28em]">SCROLL</span>
@@ -42,7 +55,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="projects" className="slide scroll-mt-24">
+        <section id="projects" data-snap-section className="slide scroll-mt-24">
           <div className="slide-divider" />
           <div className="slide-inner py-20 md:py-24">
             <div className="flex flex-col gap-7 md:flex-row md:items-end md:justify-between">
@@ -54,8 +67,8 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <Button asChild className="w-fit bg-cyan-200 text-slate-950 hover:bg-cyan-100">
-                <Link to="/projects">View all projects</Link>
+              <Button asChild className="magnetic-cta w-fit bg-cyan-200 text-slate-950 hover:bg-cyan-100">
+                <Link to="/projects" data-cursor-target>View all projects</Link>
               </Button>
             </div>
 
@@ -67,7 +80,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="music" className="relative scroll-mt-24">
+        <section id="music" data-snap-section className="relative scroll-mt-24">
           <div className="slide-divider" />
           <div className="z-10 flex min-h-[100vh] items-center">
             <div className="slide-inner py-20 md:py-24">
@@ -111,7 +124,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="about" className="slide scroll-mt-24">
+        <section id="about" data-snap-section className="slide scroll-mt-24">
           <div className="slide-divider" />
           <div className="slide-inner py-20 md:py-24">
             <div className="space-y-6 md:space-y-8">
@@ -126,7 +139,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="contact" className="slide scroll-mt-24">
+        <section id="contact" data-snap-section className="slide scroll-mt-24">
           <div className="slide-divider" />
           <div className="slide-inner py-20 md:py-24">
             <p className="kicker">CONTACT</p>
@@ -140,7 +153,7 @@ export default function HomePage() {
             <div className="mt-8 space-y-4 text-xl text-slate-200/80">
               <p>
                 GitHub:{" "}
-                <a href={githubProfile.url} target="_blank" rel="noreferrer" className="soft-link">
+                <a href={githubProfile.url} target="_blank" rel="noreferrer" data-cursor-target className="soft-link">
                   @{githubProfile.handle}
                 </a>
               </p>
@@ -150,6 +163,7 @@ export default function HomePage() {
                     href="https://discord.com/users/923779227856285757"
                     target="_blank"
                     rel="noreferrer"
+                    data-cursor-target
                     className="soft-link"
                 >
                   @arya
@@ -157,7 +171,7 @@ export default function HomePage() {
               </p>
               <p>
                 Email:{" "}
-                <a href="mailto:aryasalem@icloud.com" className="soft-link">
+                <a href="mailto:aryasalem@icloud.com" data-cursor-target className="soft-link">
                   aryasalem@icloud.com
                 </a>
               </p>

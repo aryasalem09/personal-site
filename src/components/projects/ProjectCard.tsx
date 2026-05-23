@@ -21,13 +21,17 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <Card className="group flex h-full flex-col border-white/10 bg-white/[0.045] text-slate-100 shadow-[0_20px_80px_rgba(2,6,23,0.24)] transition duration-200 hover:-translate-y-0.5 hover:border-cyan-200/30 hover:bg-white/[0.07]">
+    <Card
+      data-cursor-target
+      className="spotlight-card group flex h-full flex-col border-white/10 bg-white/[0.045] text-slate-100 shadow-[0_20px_80px_rgba(2,6,23,0.24)] transition duration-200 hover:-translate-y-0.5 hover:border-cyan-200/30 hover:bg-white/[0.07]"
+    >
       <CardHeader className="grid-cols-[1fr_auto] gap-x-4 gap-y-2">
         <CardTitle className="text-xl leading-tight md:text-2xl">
           <a
             href={project.url}
             target="_blank"
             rel="noreferrer"
+            data-cursor-target
             className="rounded-sm outline-none transition hover:text-cyan-100 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           >
             {project.name}
@@ -74,6 +78,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             target="_blank"
             rel="noreferrer"
             aria-label={`Open ${project.name} repository`}
+            data-cursor-target
           >
             <FaGithub data-icon="inline-start" />
             Repo
@@ -91,6 +96,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               target="_blank"
               rel="noreferrer"
               aria-label={`Open ${project.name} live demo`}
+              data-cursor-target
             >
               Live
               <ArrowUpRight data-icon="inline-end" />

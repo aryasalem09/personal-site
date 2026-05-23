@@ -1,8 +1,8 @@
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 const navItems = [
   { href: "/#home", label: "Home" },
-  { href: "/#projects", label: "Projects" },
+  { href: "/projects", label: "Projects" },
   { href: "/#music", label: "Music" },
   { href: "/#about", label: "About" },
   { href: "/#contact", label: "Contact" },
@@ -12,24 +12,39 @@ const navItems = [
 export default function SiteShell() {
   return (
     <div className="relative z-10 flex min-h-screen flex-col">
-      <header className="sticky top-0 z-50 bg-slate-950/14 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 bg-slate-950/[0.14] backdrop-blur-xl">
         <div className="slide-divider" />
         <div className="slide-inner py-4">
           <nav className="flex flex-wrap items-center justify-center gap-1.5">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="cursor-target rounded-full px-4 py-2 text-sm font-medium text-slate-200/78 transition hover:bg-white/10 hover:text-slate-100"
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) =>
+              item.href.startsWith("/#") ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-full px-4 py-2 text-sm font-medium text-slate-200/78 outline-none transition hover:bg-white/10 hover:text-slate-100 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <NavLink
+                  key={item.href}
+                  to={item.href}
+                  className={({ isActive }) =>
+                    [
+                      "rounded-full px-4 py-2 text-sm font-medium outline-none transition hover:bg-white/10 hover:text-slate-100 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950",
+                      isActive ? "bg-white/10 text-slate-100" : "text-slate-200/78",
+                    ].join(" ")
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              ),
+            )}
             <a
               href="https://github.com/aryasalem09"
               target="_blank"
               rel="noreferrer"
-              className="cursor-target rounded-full bg-white/8 px-4 py-2 text-sm font-medium text-slate-100 transition hover:bg-white/12"
+              className="rounded-full bg-white/[0.08] px-4 py-2 text-sm font-medium text-slate-100 outline-none transition hover:bg-white/[0.12] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
             >
               GitHub
             </a>

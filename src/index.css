@@ -11,6 +11,26 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 187 92% 69%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 187 92% 69%;
+    --radius: 0.75rem;
   }
 
   html,
@@ -28,10 +48,7 @@
     font-size: 16px;
     min-width: 320px;
     color: rgb(226 232 240);
-    background:
-            radial-gradient(130% 120% at 10% 0%, rgb(6 182 212 / 0.16), transparent 58%),
-            radial-gradient(90% 100% at 90% 100%, rgb(132 204 22 / 0.14), transparent 62%),
-            linear-gradient(180deg, rgb(2 6 23 / 0.56), rgb(15 23 42 / 0.44));
+    background: rgb(2 6 23);
     transform: none;
   }
 
@@ -46,11 +63,6 @@
     text-decoration: none;
   }
 
-  body.target-cursor-active,
-  body.target-cursor-active * {
-    cursor: none !important;
-  }
-
   #root {
     position: relative;
     min-height: 100vh;
@@ -61,7 +73,7 @@
 
 @layer components {
   .slide {
-    @apply relative min-h-[100vh] flex items-center snap-start;
+    @apply relative min-h-[100vh] flex items-center;
   }
 
   .slide-inner {
@@ -86,15 +98,15 @@
   }
 
   .big-btn {
-    @apply cursor-target rounded-full bg-white/10 px-7 py-3.5 text-lg md:text-xl font-medium text-slate-100 transition hover:bg-white/[0.14];
+    @apply rounded-full bg-white/10 px-7 py-3.5 text-lg md:text-xl font-medium text-slate-100 outline-none transition hover:bg-white/[0.14] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950;
   }
 
   .ghost-btn {
-    @apply cursor-target rounded-full bg-white/[0.07] px-7 py-3.5 text-lg md:text-xl font-medium text-slate-100/90 transition hover:bg-white/[0.11] hover:text-slate-100;
+    @apply rounded-full bg-white/[0.07] px-7 py-3.5 text-lg md:text-xl font-medium text-slate-100/90 outline-none transition hover:bg-white/[0.11] hover:text-slate-100 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950;
   }
 
   .soft-link {
-    @apply cursor-target text-slate-200/75 underline decoration-white/20 underline-offset-4 transition hover:text-slate-100 hover:decoration-white/35;
+    @apply rounded-sm text-slate-200/75 underline decoration-white/20 underline-offset-4 outline-none transition hover:text-slate-100 hover:decoration-white/35 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950;
   }
 
   .note {
@@ -104,9 +116,5 @@
 
   .note code {
     @apply rounded-md bg-black/25 px-2 py-1 font-['JetBrains_Mono'] text-sm text-slate-100/85;
-  }
-
-  .cursor-target {
-    cursor: pointer;
   }
 }

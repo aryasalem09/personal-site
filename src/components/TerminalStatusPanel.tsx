@@ -47,8 +47,8 @@ export default function TerminalStatusPanel() {
           featured
         </div>
         <div className="px-2 py-3">
-          <span className="block text-lg font-semibold text-slate-100">0</span>
-          canvas
+          <span className="block text-lg font-semibold text-slate-100">1/0</span>
+          fx
         </div>
       </div>
     </aside>

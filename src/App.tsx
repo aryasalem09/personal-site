@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AmbientBackground from "@/components/AmbientBackground";
+import AdaptiveFaultyTerminalBackground from "@/components/AdaptiveFaultyTerminalBackground";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import TargetCursorLite from "@/components/TargetCursorLite";
 import SiteShell from "@/layouts/SiteShell";
@@ -11,7 +11,7 @@ import ProjectsPage from "@/pages/ProjectsPage";
 function RoutedApp() {
   return (
     <div className="relative min-h-screen text-slate-100">
-      <AmbientBackground />
+      <AdaptiveFaultyTerminalBackground />
       <TargetCursorLite />
       <Routes>
         <Route element={<SiteShell />}>

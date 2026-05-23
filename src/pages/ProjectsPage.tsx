@@ -72,6 +72,7 @@ export default function ProjectsPage() {
     <section className="py-16 md:py-20">
       <div className="slide-inner flex flex-col gap-12">
         <div className="max-w-4xl">
+          <div className="terminal-readout mb-5 w-fit">lab archive / local project index</div>
           <p className="kicker">GitHub Projects</p>
           <h1 className="mt-4 max-w-[13ch] text-5xl font-semibold leading-[1.02] text-slate-100 md:text-6xl lg:text-7xl">
             Things I've built
@@ -122,7 +123,13 @@ export default function ProjectsPage() {
         </div>
 
         <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as ProjectTab)} className="flex flex-col gap-6">
-          <div className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/[0.035] p-4 md:p-5">
+          <div className="repo-filter-panel flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/[0.035] p-4 md:p-5">
+            <div className="flex flex-wrap items-center justify-between gap-3 font-['JetBrains_Mono'] text-xs text-slate-400">
+              <span className="text-cyan-100/75">filter://repo-index</span>
+              <span>
+                {filteredProjects.length}/{projects.length} visible
+              </span>
+            </div>
             <label className="relative block">
               <span className="sr-only">Search projects</span>
               <Search aria-hidden="true" className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
@@ -164,14 +171,15 @@ export default function ProjectsPage() {
             {filteredProjects.length > 0 ? (
               <ProjectsGrid projects={filteredProjects} />
             ) : (
-              <Card className="border-white/10 bg-white/[0.045] text-slate-100">
+              <Card className="spotlight-card border-white/10 bg-white/[0.045] text-slate-100">
                 <CardHeader>
                   <CardTitle>No projects match those filters</CardTitle>
                 </CardHeader>
                 <Separator className="bg-white/10" />
                 <CardContent className="flex flex-col gap-4 pt-6 sm:flex-row sm:items-center sm:justify-between">
                   <p className="max-w-2xl text-sm leading-relaxed text-slate-300/78">
-                    Try a different language, remove the search text, or reset the view to see the full project list.
+                    Query returned an empty archive slice. Try a different language, remove the search text, or reset the
+                    view to see the full project list.
                   </p>
                   <Button type="button" onClick={resetFilters} className="bg-cyan-200 text-slate-950 hover:bg-cyan-100">
                     Reset filters

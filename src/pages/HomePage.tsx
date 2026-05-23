@@ -10,18 +10,19 @@ import { performances } from "@/content/performances";
 export default function HomePage() {
   return (
       <div>
-        <section id="home" data-snap-section className="slide scroll-mt-24">
+        <section id="home" data-snap-section data-section-id="SYS:HOME" className="lab-section slide overflow-hidden scroll-mt-24">
           <div className="slide-inner relative z-10 grid gap-10 py-24 md:py-28 lg:grid-cols-[minmax(0,1fr)_390px] lg:items-center">
-            <div>
-              <p className="kicker">by arya</p>
+            <div className="relative">
+              <div className="terminal-readout mb-6 w-fit">~/portfolio $ boot --mode lab</div>
+              <p className="kicker">arya://student-lab</p>
 
               <h1 className="title max-w-[11ch]">
-                Personal terminal for things I build
+                Personal terminal for builds, sound, and notes
               </h1>
 
               <p className="subtitle mt-7 md:mt-8">
-                Projects, music, writing, and experiments from a student developer who likes fast interfaces with a bit
-                of signal noise.
+                Projects, music, writing, and experiments from a student developer who likes fast interfaces with a
+                visible pulse of signal noise.
               </p>
 
               <div className="mt-10 flex flex-wrap items-center gap-3">
@@ -34,9 +35,10 @@ export default function HomePage() {
               </div>
 
               <div className="mt-8 flex flex-wrap gap-2 font-['JetBrains_Mono'] text-[11px] uppercase tracking-[0.18em] text-slate-400">
-                <span className="rounded-full border border-cyan-200/15 bg-cyan-200/[0.06] px-3 py-1.5">React</span>
-                <span className="rounded-full border border-lime-200/15 bg-lime-200/[0.06] px-3 py-1.5">Research</span>
-                <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5">Quartet</span>
+                <span className="data-chip">React</span>
+                <span className="data-chip data-chip--lime">Research</span>
+                <span className="data-chip">Quartet</span>
+                <span className="data-chip data-chip--dim">Writing</span>
               </div>
             </div>
 
@@ -55,11 +57,12 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="projects" data-snap-section className="slide scroll-mt-24">
+        <section id="projects" data-snap-section data-section-id="LAB:PROJECTS" className="lab-section slide scroll-mt-24">
           <div className="slide-divider" />
           <div className="slide-inner py-20 md:py-24">
             <div className="flex flex-col gap-7 md:flex-row md:items-end md:justify-between">
               <div>
+                <div className="terminal-readout mb-5 w-fit">repo index / featured</div>
                 <p className="kicker">PROJECTS</p>
                 <h2 className="title max-w-[14ch]">Featured Projects</h2>
                 <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300/78 md:text-xl">
@@ -80,10 +83,11 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="music" data-snap-section className="relative scroll-mt-24">
+        <section id="music" data-snap-section data-section-id="LAB:MUSIC" className="lab-section relative scroll-mt-24">
           <div className="slide-divider" />
           <div className="z-10 flex min-h-[100vh] items-center">
             <div className="slide-inner py-20 md:py-24">
+              <div className="terminal-readout mb-5 w-fit">media buffer / click to load</div>
               <p className="kicker">MUSIC</p>
 
               <h2 className="title">
@@ -124,10 +128,11 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="about" data-snap-section className="slide scroll-mt-24">
+        <section id="about" data-snap-section data-section-id="SYS:ABOUT" className="lab-section slide scroll-mt-24">
           <div className="slide-divider" />
           <div className="slide-inner py-20 md:py-24">
             <div className="space-y-6 md:space-y-8">
+              <div className="terminal-readout w-fit">profile / current</div>
               <p className="kicker">ABOUT</p>
 
               <h2 className="title">
@@ -139,9 +144,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="contact" data-snap-section className="slide scroll-mt-24">
+        <section id="contact" data-snap-section data-section-id="NET:CONTACT" className="lab-section slide scroll-mt-24">
           <div className="slide-divider" />
           <div className="slide-inner py-20 md:py-24">
+            <div className="terminal-readout mb-5 w-fit">handshake / available</div>
             <p className="kicker">CONTACT</p>
 
             <h2 className="title">

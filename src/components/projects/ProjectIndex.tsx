@@ -18,7 +18,7 @@ function Artifact({ project }: { project: Project }) {
         <p className="text-sm text-muted-foreground">club notice</p>
         <h4 className="mt-3 text-xl font-semibold">SLHS Hack Club</h4>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">
-          Meetings, updates, and a web presence that feels student-run.
+          Meeting times, announcements, and a place to point new members.
         </p>
       </div>
     );
@@ -131,12 +131,12 @@ export default function ProjectIndex() {
     <section id="work" className="scroll-mt-20 border-t border-border/60">
       <div className="site-container py-16 md:py-24">
         <div className="mb-10 max-w-2xl">
-          <p className="text-sm text-muted-foreground">A few things I’ve put on GitHub.</p>
+          <p className="text-sm text-muted-foreground">Some things I’ve made.</p>
           <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">
-            Projects I’d show first.
+            The repos I’d probably show you first.
           </h2>
           <p className="mt-4 leading-7 text-muted-foreground">
-            Mostly school websites, science sketches, tiny simulations, and one math thing.
+            Mostly school sites, science projects, small simulations, and one Fortran thing because why not.
           </p>
         </div>
 

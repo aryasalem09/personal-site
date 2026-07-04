@@ -5,30 +5,37 @@ import ProjectIndex from "@/components/projects/ProjectIndex";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import { githubProfile } from "@/content/github";
 import { performances } from "@/content/performances";
+import { useEnhancedEffects } from "@/hooks/useEnhancedEffects";
 
 export default function HomePage() {
+  const enhancedEffects = useEnhancedEffects();
+
   return (
     <div>
       <section id="home" className="relative scroll-mt-20 overflow-hidden">
-        <div className="site-container grid gap-10 py-16 md:grid-cols-[minmax(0,1fr)_22rem] md:items-center md:py-24">
+        <div
+          className={`site-container grid gap-10 py-14 md:py-20 ${
+            enhancedEffects ? "md:grid-cols-[minmax(0,1fr)_24rem] md:items-center" : ""
+          }`.trim()}
+        >
           <div className="max-w-2xl">
             <p className="text-sm text-muted-foreground">
               high school, small tools, quartet rehearsals
             </p>
 
-            <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.02] tracking-[-0.035em] md:text-6xl">
-              I’m Arya. I make websites and tiny experiments for things I’m already part of.
+            <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.035em] md:text-5xl lg:text-6xl">
+              I’m Arya. I build small websites and experiments for whatever I’m doing at the time.
             </h1>
 
             <p className="mt-6 max-w-xl text-pretty text-lg leading-8 text-muted-foreground">
-              That usually means Hack Club pages, coral-data sketches, ecosystem simulations,
+              Right now that means Hack Club pages, coral bleaching maps, ecosystem sims,
               and quartet recordings with friends.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="#work"
-                className="cursor-target inline-flex items-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:opacity-90"
+                className="cursor-target inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:opacity-90"
               >
                 See projects
               </a>
@@ -37,16 +44,18 @@ export default function HomePage() {
                 href={githubProfile.url}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center rounded-full border border-border px-5 py-2.5 text-sm text-muted-foreground transition hover:text-foreground"
+                className="cursor-target inline-flex items-center justify-center rounded-full border border-border px-5 py-2.5 text-sm text-muted-foreground transition hover:text-foreground"
               >
                 GitHub
               </a>
             </div>
           </div>
 
-          <div className="hidden h-[22rem] md:block">
-            <HeroFaultyTerminal />
-          </div>
+          {enhancedEffects ? (
+            <div className="hidden h-[24rem] md:block">
+              <HeroFaultyTerminal />
+            </div>
+          ) : null}
         </div>
       </section>
 
@@ -59,7 +68,7 @@ export default function HomePage() {
               Quartet recordings
             </h2>
             <p className="mt-4 leading-7 text-muted-foreground">
-              A few recordings from Ballard House.
+              A few quartet recordings from Ballard House.
             </p>
           </div>
 
@@ -89,12 +98,12 @@ export default function HomePage() {
             <p className="text-sm text-muted-foreground md:col-span-4">About</p>
             <div className="md:col-span-8">
               <p className="max-w-2xl text-balance text-2xl font-medium leading-snug tracking-tight md:text-3xl">
-                I'm Arya, a high school junior. I like taking things that are messy or invisible — club logistics, reef
-                bleaching data, ecosystem dynamics — and making them visible and usable.
+                I’m a high school junior. I like projects where messy stuff gets easier to see — club logistics, reef
+                data, simulation rules, that kind of thing.
               </p>
               <p className="mt-6 max-w-xl leading-7 text-muted-foreground">
-                The other half of my time goes to a string quartet with friends. Honestly, it's the same skill: listen
-                carefully, keep time, don't overplay.
+                I also play in a string quartet with friends, which is mostly listening carefully and trying not to
+                rush.
               </p>
             </div>
           </div>
@@ -108,7 +117,7 @@ export default function HomePage() {
             <div className="md:col-span-8">
               <h2 className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">Reach me.</h2>
               <p className="mt-3 max-w-xl leading-7 text-muted-foreground">
-                Discord is usually quickest. Email is fine too.
+                Discord is usually fastest. Email works too.
               </p>
 
               <ul className="mt-8 max-w-xl">

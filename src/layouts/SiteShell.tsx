@@ -1,67 +1,67 @@
-import { NavLink, Outlet } from "react-router-dom";
-import CommandPalette from "@/components/CommandPalette";
-import SectionProgressRail from "@/components/SectionProgressRail";
+import { Link, Outlet } from "react-router-dom";
 
-const navItems = [
-  { href: "/#home", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/#music", label: "Music" },
-  { href: "/#about", label: "About" },
-  { href: "/#contact", label: "Contact" },
-  { href: "/blog", label: "Blog" },
-];
+import SiteTargetCursor from "@/components/effects/SiteTargetCursor";
+import ThemeToggle from "@/components/ThemeToggle";
+import { githubProfile } from "@/content/github";
+
+function PaperBackground() {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-0 -z-10 bg-background"
+    />
+  );
+}
 
 export default function SiteShell() {
   return (
-    <div className="relative z-10 flex min-h-screen flex-col">
-      <header className="sticky top-0 z-50 bg-slate-950/[0.14] backdrop-blur-xl">
-        <div className="slide-divider" />
-        <div className="slide-inner py-4">
-          <nav className="flex flex-wrap items-center justify-center gap-1.5">
-            {navItems.map((item) =>
-              item.href.startsWith("/#") ? (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  data-cursor-target
-                  className="rounded-full px-4 py-2 text-sm font-medium text-slate-200/78 outline-none transition hover:bg-white/10 hover:text-slate-100 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <NavLink
-                  key={item.href}
-                  to={item.href}
-                  data-cursor-target
-                  className={({ isActive }) =>
-                    [
-                      "rounded-full px-4 py-2 text-sm font-medium outline-none transition hover:bg-white/10 hover:text-slate-100 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950",
-                      isActive ? "bg-white/10 text-slate-100" : "text-slate-200/78",
-                    ].join(" ")
-                  }
-                >
-                  {item.label}
-                </NavLink>
-              ),
-            )}
+    <div className="relative flex min-h-svh flex-col">
+      <SiteTargetCursor />
+      <PaperBackground />
+
+      <a
+        href="#main"
+        className="sr-only rounded-md bg-card px-3 py-2 text-xs focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50"
+      >
+        Skip to content
+      </a>
+
+      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
+        <div className="site-container flex h-14 items-center justify-between gap-6">
+          <Link
+            to="/"
+            className="rounded-sm font-medium tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          >
+            arya.salem
+          </Link>
+
+          <nav aria-label="Main" className="flex items-center gap-1 text-sm text-muted-foreground sm:gap-2">
+            <Link to="/#work" className="cursor-target inline-flex rounded-md px-1.5 py-1 transition hover:text-foreground">Work</Link>
+            <Link to="/#music" className="cursor-target inline-flex rounded-md px-1.5 py-1 transition hover:text-foreground">Music</Link>
+            <Link to="/#contact" className="cursor-target inline-flex rounded-md px-1.5 py-1 transition hover:text-foreground">Contact</Link>
             <a
-              href="https://github.com/aryasalem09"
+              href={githubProfile.url}
               target="_blank"
               rel="noreferrer"
-              data-cursor-target
-              className="rounded-full bg-white/[0.08] px-4 py-2 text-sm font-medium text-slate-100 outline-none transition hover:bg-white/[0.12] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              className="cursor-target hidden rounded-md px-1.5 py-1 transition hover:text-foreground min-[380px]:inline-flex"
             >
               GitHub
             </a>
-            <CommandPalette />
+            <ThemeToggle />
           </nav>
         </div>
       </header>
 
-      <main className="relative z-10 flex-1">
+      <main id="main" className="flex-1">
         <Outlet />
       </main>
-      <SectionProgressRail />
+
+      <footer className="border-t border-border/60">
+        <div className="site-container flex flex-col gap-1 py-8 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
+          <p>&copy; {new Date().getFullYear()} Arya Salem</p>
+          <p>made after school and rehearsal.</p>
+        </div>
+      </footer>
     </div>
   );
 }

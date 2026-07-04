@@ -46,7 +46,7 @@ export default function YouTubeEmbed({
               className="h-full w-full object-cover opacity-90 transition-opacity duration-200 group-hover:opacity-100"
             />
             <span className="absolute inset-0 bg-foreground/10 transition-colors group-hover:bg-foreground/5" />
-            <span className="absolute inline-flex items-center gap-2.5 rounded-full border border-border bg-background/90 px-5 py-2.5 font-mono text-xs uppercase tracking-[0.16em] text-foreground shadow-soft backdrop-blur transition-colors group-hover:border-signal/50">
+            <span className="absolute inline-flex items-center gap-2 rounded-full border border-border bg-background/90 px-5 py-2.5 text-sm font-medium text-foreground shadow-soft backdrop-blur transition-colors group-hover:border-signal/50">
               <Play className="size-3.5" />
               Play
             </span>

@@ -4,52 +4,49 @@ import { useEnhancedEffects } from "@/hooks/useEnhancedEffects";
 
 const TargetCursor = lazy(() => import("@/components/react-bits/TargetCursor"));
 
-// gsap can't tween border colors written as `hsl(var(--x))`, so resolve the
-// theme tokens to concrete values and re-resolve when the theme class flips.
-function useCursorColors(enabled: boolean) {
-  const [colors, setColors] = useState<{ base: string; target: string } | null>(null);
-
-  useEffect(() => {
-    if (!enabled) {
-      return undefined;
-    }
-
-    const resolve = () => {
-      const styles = getComputedStyle(document.documentElement);
-      setColors({
-        base: `hsl(${styles.getPropertyValue("--foreground").trim()})`,
-        target: `hsl(${styles.getPropertyValue("--signal").trim()})`,
-      });
-    };
-
-    resolve();
-
-    const observer = new MutationObserver(resolve);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
-    return () => observer.disconnect();
-  }, [enabled]);
-
-  return colors;
+function readCssColor(name: string) {
+  if (typeof window === "undefined") return "#ffffff";
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
 
 export default function SiteTargetCursor() {
   const enabled = useEnhancedEffects();
-  const colors = useCursorColors(enabled);
+  const [colors, setColors] = useState({
+    normal: "#1f2937",
+    target: "#2563eb",
+  });
 
-  if (!enabled || !colors) {
-    return null;
-  }
+  useEffect(() => {
+    const update = () => {
+      setColors({
+        normal: readCssColor("--cursor-color") || "#1f2937",
+        target: readCssColor("--cursor-target-color") || "#2563eb",
+      });
+    };
+
+    update();
+
+    const observer = new MutationObserver(update);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  if (!enabled) return null;
 
   return (
     <Suspense fallback={null}>
       <TargetCursor
-        key={colors.base}
+        key={colors.normal}
         targetSelector=".cursor-target"
         spinDuration={1.8}
         hideDefaultCursor
         hoverDuration={0.16}
         parallaxOn={false}
-        cursorColor={colors.base}
+        cursorColor={colors.normal}
         cursorColorOnTarget={colors.target}
       />
     </Suspense>

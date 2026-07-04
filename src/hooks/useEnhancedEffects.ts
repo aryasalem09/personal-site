@@ -4,21 +4,33 @@ type NavigatorWithMemory = Navigator & {
   deviceMemory?: number;
 };
 
-const queries = ["(prefers-reduced-motion: reduce)", "(min-width: 768px)", "(pointer: coarse)"];
-
-function subscribe(onChange: () => void) {
-  const lists = queries.map((query) => window.matchMedia(query));
-  lists.forEach((list) => list.addEventListener("change", onChange));
-  return () => lists.forEach((list) => list.removeEventListener("change", onChange));
-}
-
 function getSnapshot() {
-  const [reducedMotion, desktop, coarsePointer] = queries.map((query) => window.matchMedia(query).matches);
+  if (typeof window === "undefined") return false;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const desktop = window.matchMedia("(min-width: 768px)").matches;
+  const finePointer = window.matchMedia("(pointer: fine)").matches;
   const memory = (navigator as NavigatorWithMemory).deviceMemory ?? 8;
 
-  return desktop && !coarsePointer && !reducedMotion && memory >= 4;
+  return desktop && finePointer && !reducedMotion && memory >= 4;
+}
+
+function subscribe(callback: () => void) {
+  if (typeof window === "undefined") return () => {};
+
+  const queries = [
+    window.matchMedia("(prefers-reduced-motion: reduce)"),
+    window.matchMedia("(min-width: 768px)"),
+    window.matchMedia("(pointer: fine)"),
+  ];
+
+  queries.forEach((query) => query.addEventListener("change", callback));
+
+  return () => {
+    queries.forEach((query) => query.removeEventListener("change", callback));
+  };
 }
 
 export function useEnhancedEffects() {
-  return useSyncExternalStore(subscribe, getSnapshot);
+  return useSyncExternalStore(subscribe, getSnapshot, () => false);
 }

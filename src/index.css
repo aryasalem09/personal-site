@@ -26,8 +26,9 @@
     --radius: 1rem;
     --signal: 205 85% 32%;
     --ember: 28 85% 42%;
-    --line: 215 22% 46%;
     --shadow: 222 30% 20%;
+    --cursor-color: #1f2937;
+    --cursor-target-color: #2563eb;
   }
 
   .dark {
@@ -52,8 +53,9 @@
     --ring: 203 72% 66%;
     --signal: 203 72% 66%;
     --ember: 34 82% 60%;
-    --line: 214 28% 72%;
     --shadow: 222 40% 2%;
+    --cursor-color: #f4efe6;
+    --cursor-target-color: #7dd3fc;
   }
 
   html {
@@ -93,23 +95,8 @@
 }
 
 @layer components {
-  .notebook-grid {
-    background-image:
-      linear-gradient(hsl(var(--line) / 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--line) / 0.04) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
-
   .site-container {
     @apply mx-auto w-full max-w-site px-5 md:px-8;
-  }
-
-  .kicker {
-    @apply font-mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground;
-  }
-
-  .icon-button {
-    @apply inline-flex size-9 items-center justify-center rounded-full border border-border bg-card/70 text-muted-foreground outline-none transition-colors hover:border-signal/50 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
   }
 
   .quiet-link {

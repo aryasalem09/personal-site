@@ -29,10 +29,10 @@ function Artifact({ project }: { project: Project }) {
       <div className="max-w-sm border-y border-border py-4">
         <p className="text-sm text-muted-foreground">reef reading</p>
         <dl className="mt-3 grid grid-cols-[7rem_1fr] gap-y-2 text-sm">
-          <dt className="text-muted-foreground">signal</dt>
+          <dt className="text-muted-foreground">tracking</dt>
           <dd>bleaching risk</dd>
-          <dt className="text-muted-foreground">view</dt>
-          <dd>map + context</dd>
+          <dt className="text-muted-foreground">shows</dt>
+          <dd>a map, plus context</dd>
           <dt className="text-muted-foreground">rule</dt>
           <dd>don’t overclaim the data</dd>
         </dl>
@@ -73,11 +73,14 @@ time              -> weird behavior`}
   }
 
   return (
-    <ul className="max-w-sm space-y-2 border-l border-border pl-4 text-sm text-muted-foreground">
-      <li>school project constraints</li>
-      <li>clear navigation</li>
-      <li>deadline-driven build</li>
-    </ul>
+    <div className="max-w-sm border-l border-border pl-4">
+      <p className="text-sm text-muted-foreground">webmaster checklist</p>
+      <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+        <li>☑ follows the TSA webmaster rules</li>
+        <li>☑ works on the school computers</li>
+        <li>☑ finished before the deadline</li>
+      </ul>
+    </div>
   );
 }
 

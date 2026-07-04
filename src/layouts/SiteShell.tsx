@@ -35,7 +35,7 @@ export default function SiteShell() {
             arya.salem
           </Link>
 
-          <nav aria-label="Main" className="flex items-center gap-5 text-sm text-muted-foreground">
+          <nav aria-label="Main" className="flex items-center gap-4 text-sm text-muted-foreground sm:gap-5">
             <Link to="/#work" className="transition hover:text-foreground">Work</Link>
             <Link to="/#music" className="transition hover:text-foreground">Music</Link>
             <Link to="/#contact" className="transition hover:text-foreground">Contact</Link>
@@ -43,7 +43,7 @@ export default function SiteShell() {
               href={githubProfile.url}
               target="_blank"
               rel="noreferrer"
-              className="transition hover:text-foreground"
+              className="hidden transition hover:text-foreground min-[380px]:inline"
             >
               GitHub
             </a>

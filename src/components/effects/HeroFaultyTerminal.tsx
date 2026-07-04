@@ -32,7 +32,7 @@ export default function HeroFaultyTerminal() {
           mouseStrength={0.05}
           dpr={1}
           pageLoadAnimation
-          brightness={0.32}
+          brightness={0.42}
         />
       </Suspense>
     </div>

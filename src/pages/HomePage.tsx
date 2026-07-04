@@ -1,103 +1,87 @@
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 
-import SelectedWork from "@/components/projects/SelectedWork";
-import StatusPill from "@/components/StatusPill";
+import HeroFaultyTerminal from "@/components/effects/HeroFaultyTerminal";
+import RepoWorkbench from "@/components/projects/RepoWorkbench";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import { GithubIcon } from "@/components/icons";
 import { githubProfile } from "@/content/github";
 import { performances } from "@/content/performances";
 
-const heroIndex = [
-  ["01", "club sites"],
-  ["02", "climate data"],
-  ["03", "simulations"],
-  ["04", "string quartet"],
-];
-
 export default function HomePage() {
   return (
     <div>
-      <section id="home" className="scroll-mt-20">
-        <div className="site-container pb-16 pt-16 md:pb-24 md:pt-28">
-          <StatusPill />
-
-          <h1 className="mt-7 max-w-3xl text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-6xl">
-            I build small tools for school, science, and sound.
-          </h1>
-
-          <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-muted-foreground md:text-xl">
-            High schooler making club websites, climate trackers, and ecosystem simulations — and playing string
-            quartet arrangements with friends on the side.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#work"
-              className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            >
-              See the work
-              <ArrowDown className="size-4" />
-            </a>
-            <a
-              href={githubProfile.url}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-5 py-2.5 text-sm font-medium outline-none transition-colors hover:border-signal/50 hover:text-signal focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            >
-              <GithubIcon className="size-4" />
-              GitHub
-            </a>
+      <section id="home" className="relative scroll-mt-20 overflow-hidden">
+        <div className="site-container relative py-16 md:py-24">
+          <div className="absolute inset-x-5 top-8 h-[26rem] md:inset-x-8 md:h-[32rem]">
+            <HeroFaultyTerminal />
           </div>
 
-          <dl className="mt-14 grid grid-cols-2 gap-3 border-t border-border pt-5 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground sm:grid-cols-4">
-            {heroIndex.map(([number, label]) => (
-              <div key={number} className="flex gap-2">
-                <dt className="text-foreground">{number}</dt>
-                <dd>{label}</dd>
-              </div>
-            ))}
-          </dl>
+          <div className="relative z-10 max-w-3xl py-16 md:py-24">
+            <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-6xl">
+              I make little tools for school, science, and sound.
+            </h1>
+
+            <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-muted-foreground md:text-xl">
+              I’m Arya — a high school student building club sites, climate-data experiments, tiny simulations, and
+              quartet recordings with friends.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="#work"
+                className="cursor-target inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                See the work
+                <ArrowDown className="size-4" />
+              </a>
+              <a
+                href={githubProfile.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-5 py-2.5 text-sm font-medium outline-none transition-colors hover:border-signal/50 hover:text-signal focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                <GithubIcon className="size-4" />
+                GitHub
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
-      <SelectedWork />
+      <RepoWorkbench />
 
       <section id="music" className="scroll-mt-20 border-t border-border/70">
         <div className="site-container py-16 md:py-24">
-          <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="kicker">Music</p>
-              <h2 className="mt-3 max-w-xl text-balance text-3xl font-semibold tracking-tight md:text-4xl">
-                String quartet, occasionally recorded.
-              </h2>
-            </div>
-            <p className="max-w-sm text-sm leading-6 text-muted-foreground">
-              Three arrangements performed at the Ballard House with my quartet. Videos load when you press play —
-              nothing autoplays here.
+          <div className="mb-8 max-w-2xl">
+            <p className="text-sm text-muted-foreground">Recorded at the Ballard House.</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+              Quartet setlist
+            </h2>
+            <p className="mt-4 leading-7 text-muted-foreground">
+              Three arrangements with friends. Videos only load when you press play.
             </p>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-2">
-            <figure className="space-y-3 lg:col-span-2">
-              <YouTubeEmbed
-                youtubeId={performances[0].youtubeId}
-                title={performances[0].title}
-                aspectClassName="aspect-[16/8.5]"
-              />
-              <figcaption className="font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
-                {performances[0].title}
-              </figcaption>
-            </figure>
-
-            {performances.slice(1).map((performance) => (
-              <figure key={performance.youtubeId} className="space-y-3">
-                <YouTubeEmbed youtubeId={performance.youtubeId} title={performance.title} />
-                <figcaption className="font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
-                  {performance.title}
-                </figcaption>
-              </figure>
+          <ol className="grid gap-6 lg:grid-cols-2">
+            {performances.map((performance, index) => (
+              <li key={performance.youtubeId} className={index === 0 ? "lg:col-span-2" : undefined}>
+                <figure className="space-y-3">
+                  <YouTubeEmbed
+                    youtubeId={performance.youtubeId}
+                    title={`${performance.title} by ${performance.artist}, string quartet`}
+                    aspectClassName={index === 0 ? "aspect-[16/8.5]" : "aspect-video"}
+                  />
+                  <figcaption className="flex items-baseline gap-3 font-mono text-xs text-muted-foreground">
+                    <span className="text-foreground">{String(index + 1).padStart(2, "0")}</span>
+                    <span>
+                      {performance.title}
+                      <span className="text-muted-foreground/70"> · {performance.artist}</span>
+                    </span>
+                  </figcaption>
+                </figure>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
@@ -150,7 +134,7 @@ export default function HomePage() {
                     <a
                       href={row.href}
                       {...(row.external ? { target: "_blank", rel: "noreferrer" } : {})}
-                      className="quiet-link inline-flex items-center gap-1.5 text-base"
+                      className="cursor-target quiet-link inline-flex items-center gap-1.5 text-base"
                     >
                       {row.text}
                       {row.external ? <ArrowUpRight className="size-3.5 text-muted-foreground" /> : null}

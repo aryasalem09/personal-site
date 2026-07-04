@@ -1,19 +1,23 @@
 export interface Performance {
   title: string;
+  artist: string;
   youtubeId: string;
 }
 
 export const performances: Performance[] = [
   {
-    title: "At Last by Etta James for String Quartet",
+    title: "At Last",
+    artist: "Etta James",
     youtubeId: "T1Q9R1zc20I",
   },
   {
-    title: "House of the Rising Sun by The Animals for String Quartet",
+    title: "House of the Rising Sun",
+    artist: "The Animals",
     youtubeId: "1WjGAjKmmHc",
   },
   {
-    title: "September by Earth, Wind, Fire for String Quartet",
+    title: "September",
+    artist: "Earth, Wind & Fire",
     youtubeId: "MzlFf6N3HI8",
   },
 ];

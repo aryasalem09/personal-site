@@ -36,7 +36,7 @@ export default function YouTubeEmbed({
           <button
             type="button"
             onClick={() => setIsLoaded(true)}
-            className="group relative flex h-full w-full items-center justify-center overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="cursor-target group relative flex h-full w-full items-center justify-center overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             aria-label={`Play ${title}`}
           >
             <img

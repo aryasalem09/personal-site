@@ -35,15 +35,15 @@ export default function SiteShell() {
             arya.salem
           </Link>
 
-          <nav aria-label="Main" className="flex items-center gap-4 text-sm text-muted-foreground sm:gap-5">
-            <Link to="/#work" className="transition hover:text-foreground">Work</Link>
-            <Link to="/#music" className="transition hover:text-foreground">Music</Link>
-            <Link to="/#contact" className="transition hover:text-foreground">Contact</Link>
+          <nav aria-label="Main" className="flex items-center gap-1 text-sm text-muted-foreground sm:gap-2">
+            <Link to="/#work" className="cursor-target inline-flex rounded-md px-1.5 py-1 transition hover:text-foreground">Work</Link>
+            <Link to="/#music" className="cursor-target inline-flex rounded-md px-1.5 py-1 transition hover:text-foreground">Music</Link>
+            <Link to="/#contact" className="cursor-target inline-flex rounded-md px-1.5 py-1 transition hover:text-foreground">Contact</Link>
             <a
               href={githubProfile.url}
               target="_blank"
               rel="noreferrer"
-              className="hidden transition hover:text-foreground min-[380px]:inline"
+              className="cursor-target hidden rounded-md px-1.5 py-1 transition hover:text-foreground min-[380px]:inline-flex"
             >
               GitHub
             </a>
@@ -59,7 +59,7 @@ export default function SiteShell() {
       <footer className="border-t border-border/60">
         <div className="site-container flex flex-col gap-1 py-8 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
           <p>&copy; {new Date().getFullYear()} Arya Salem</p>
-          <p>made after school, rehearsal, and too many small ideas.</p>
+          <p>made after school and rehearsal.</p>
         </div>
       </footer>
     </div>

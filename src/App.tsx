@@ -1,11 +1,8 @@
 import { useEffect } from "react";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import SiteShell from "@/layouts/SiteShell";
-import BlogListPage from "@/pages/BlogListPage";
-import BlogPostPage from "@/pages/BlogPostPage";
 import HomePage from "@/pages/HomePage";
-import ProjectsPage from "@/pages/ProjectsPage";
 
 function ScrollManager() {
   const location = useLocation();
@@ -33,9 +30,7 @@ export default function App() {
       <Routes>
         <Route element={<SiteShell />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/blog" element={<BlogListPage />} />
-          <Route path="/blog/:slug" element={<BlogPostPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
     </BrowserRouter>

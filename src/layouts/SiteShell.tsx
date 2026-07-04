@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 
-import CommandPalette from "@/components/CommandPalette";
+import SiteTargetCursor from "@/components/effects/SiteTargetCursor";
 import ThemeToggle from "@/components/ThemeToggle";
 import { GithubIcon } from "@/components/icons";
 import { githubProfile } from "@/content/github";
@@ -8,16 +8,13 @@ import { githubProfile } from "@/content/github";
 const navItems = [
   { label: "Work", to: "/#work" },
   { label: "Music", to: "/#music" },
-  { label: "Blog", to: "/blog" },
-  { label: "Contact", to: "/#contact", desktopOnly: true },
+  { label: "Contact", to: "/#contact" },
 ];
 
 function PaperBackground() {
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 bg-background">
       <div className="notebook-grid absolute inset-0" />
-      <div className="absolute inset-0 bg-[radial-gradient(42rem_26rem_at_16%_-6%,hsl(var(--signal)/0.08),transparent_70%),radial-gradient(34rem_22rem_at_88%_-2%,hsl(var(--ember)/0.07),transparent_70%)]" />
-      <div className="absolute inset-y-0 left-4 w-px bg-ember/25 md:left-8" />
     </div>
   );
 }
@@ -25,6 +22,7 @@ function PaperBackground() {
 export default function SiteShell() {
   return (
     <div className="relative flex min-h-svh flex-col">
+      <SiteTargetCursor />
       <PaperBackground />
 
       <a
@@ -48,7 +46,7 @@ export default function SiteShell() {
               <Link
                 key={item.to}
                 to={item.to}
-                className={`rounded-full px-2.5 py-1.5 text-sm text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-3 ${item.desktopOnly ? "hidden sm:inline-flex" : ""}`}
+                className="rounded-full px-2.5 py-1.5 text-sm text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-3"
               >
                 {item.label}
               </Link>
@@ -56,7 +54,6 @@ export default function SiteShell() {
           </nav>
 
           <div className="flex items-center gap-1.5">
-            <CommandPalette />
             <a
               href={githubProfile.url}
               target="_blank"
@@ -76,9 +73,9 @@ export default function SiteShell() {
       </main>
 
       <footer className="border-t border-border/70">
-        <div className="site-container flex flex-col gap-2 py-8 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground md:flex-row md:items-center md:justify-between">
+        <div className="site-container flex flex-col gap-2 py-8 font-mono text-[11px] text-muted-foreground md:flex-row md:items-center md:justify-between">
           <p>&copy; {new Date().getFullYear()} Arya Salem</p>
-          <p>graph paper, thin borders, zero WebGL</p>
+          <p>made between school, rehearsals, and too many small ideas.</p>
         </div>
       </footer>
     </div>

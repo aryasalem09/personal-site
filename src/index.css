@@ -4,7 +4,6 @@
 
 @layer base {
   :root {
-    /* field notes: warm paper, ink text, one cool accent (signal), one warm accent (ember) */
     --background: 44 36% 96%;
     --foreground: 222 30% 14%;
     --card: 42 40% 99%;
@@ -94,11 +93,10 @@
 }
 
 @layer components {
-  /* graph-paper backdrop — static, no JS, no filters */
   .notebook-grid {
     background-image:
-      linear-gradient(hsl(var(--line) / 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--line) / 0.08) 1px, transparent 1px);
+      linear-gradient(hsl(var(--line) / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--line) / 0.04) 1px, transparent 1px);
     background-size: 32px 32px;
   }
 
@@ -108,10 +106,6 @@
 
   .kicker {
     @apply font-mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground;
-  }
-
-  .chip {
-    @apply rounded-full border border-border bg-card/70 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground;
   }
 
   .icon-button {

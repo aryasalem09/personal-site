@@ -1,8 +1,8 @@
 # personal site
 
-A small personal site for projects, quartet recordings, and notes on things I’m building.
+A small personal site for projects and quartet recordings.
 
-Built with Vite, React, TypeScript, Tailwind, and a couple of carefully gated React Bits effects.
+Built with Vite, React, TypeScript, Tailwind, and two React Bits effects (desktop-only).
 
 ## commands
 

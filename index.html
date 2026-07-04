@@ -16,10 +16,16 @@
       (function () {
         try {
           var stored = localStorage.getItem("theme");
-          var dark = stored
-            ? stored === "dark"
-            : window.matchMedia("(prefers-color-scheme: dark)").matches;
-          if (dark) document.documentElement.classList.add("dark");
+
+          if (stored === "dark") {
+            document.documentElement.classList.add("dark");
+          }
+
+          if (stored === "light") {
+            document.documentElement.classList.remove("dark");
+          }
+
+          // No stored value: first-time visitors see light mode.
         } catch (error) {
           /* default to light */
         }

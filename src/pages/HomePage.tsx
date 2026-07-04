@@ -1,9 +1,8 @@
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 import HeroFaultyTerminal from "@/components/effects/HeroFaultyTerminal";
-import RepoWorkbench from "@/components/projects/RepoWorkbench";
+import ProjectIndex from "@/components/projects/ProjectIndex";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
-import { GithubIcon } from "@/components/icons";
 import { githubProfile } from "@/content/github";
 import { performances } from "@/content/performances";
 
@@ -11,54 +10,56 @@ export default function HomePage() {
   return (
     <div>
       <section id="home" className="relative scroll-mt-20 overflow-hidden">
-        <div className="site-container relative py-16 md:py-24">
-          <div className="absolute inset-x-5 top-8 h-[26rem] md:inset-x-8 md:h-[32rem]">
-            <HeroFaultyTerminal />
-          </div>
+        <div className="site-container grid gap-10 py-16 md:grid-cols-[minmax(0,1fr)_22rem] md:items-center md:py-24">
+          <div className="max-w-2xl">
+            <p className="text-sm text-muted-foreground">
+              high school, small tools, quartet rehearsals
+            </p>
 
-          <div className="relative z-10 max-w-3xl py-16 md:py-24">
-            <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-6xl">
-              I make little tools for school, science, and sound.
+            <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.02] tracking-[-0.035em] md:text-6xl">
+              I’m Arya. I make websites and tiny experiments for things I’m already part of.
             </h1>
 
-            <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-muted-foreground md:text-xl">
-              I’m Arya — a high school student building club sites, climate-data experiments, tiny simulations, and
-              quartet recordings with friends.
+            <p className="mt-6 max-w-xl text-pretty text-lg leading-8 text-muted-foreground">
+              That usually means Hack Club pages, coral-data sketches, ecosystem simulations,
+              and quartet recordings with friends.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="#work"
-                className="cursor-target inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="cursor-target inline-flex items-center rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:opacity-90"
               >
-                See the work
-                <ArrowDown className="size-4" />
+                See projects
               </a>
+
               <a
                 href={githubProfile.url}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-5 py-2.5 text-sm font-medium outline-none transition-colors hover:border-signal/50 hover:text-signal focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="inline-flex items-center rounded-full border border-border px-5 py-2.5 text-sm text-muted-foreground transition hover:text-foreground"
               >
-                <GithubIcon className="size-4" />
                 GitHub
               </a>
             </div>
           </div>
+
+          <div className="hidden h-[22rem] md:block">
+            <HeroFaultyTerminal />
+          </div>
         </div>
       </section>
 
-      <RepoWorkbench />
+      <ProjectIndex />
 
-      <section id="music" className="scroll-mt-20 border-t border-border/70">
+      <section id="music" className="scroll-mt-20 border-t border-border/60">
         <div className="site-container py-16 md:py-24">
           <div className="mb-8 max-w-2xl">
-            <p className="text-sm text-muted-foreground">Recorded at the Ballard House.</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-              Quartet setlist
+            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+              Quartet recordings
             </h2>
             <p className="mt-4 leading-7 text-muted-foreground">
-              Three arrangements with friends. Videos only load when you press play.
+              A few recordings from Ballard House. The videos load only when you press play.
             </p>
           </div>
 
@@ -71,12 +72,9 @@ export default function HomePage() {
                     title={`${performance.title} by ${performance.artist}, string quartet`}
                     aspectClassName={index === 0 ? "aspect-[16/8.5]" : "aspect-video"}
                   />
-                  <figcaption className="flex items-baseline gap-3 font-mono text-xs text-muted-foreground">
-                    <span className="text-foreground">{String(index + 1).padStart(2, "0")}</span>
-                    <span>
-                      {performance.title}
-                      <span className="text-muted-foreground/70"> · {performance.artist}</span>
-                    </span>
+                  <figcaption className="text-sm text-muted-foreground">
+                    {performance.title}
+                    <span className="text-muted-foreground/70"> · {performance.artist}</span>
                   </figcaption>
                 </figure>
               </li>
@@ -85,10 +83,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="about" className="scroll-mt-20 border-t border-border/70">
+      <section id="about" className="scroll-mt-20 border-t border-border/60">
         <div className="site-container py-16 md:py-24">
           <div className="grid gap-6 md:grid-cols-12">
-            <p className="kicker md:col-span-4">About</p>
+            <p className="text-sm text-muted-foreground md:col-span-4">About</p>
             <div className="md:col-span-8">
               <p className="max-w-2xl text-balance text-2xl font-medium leading-snug tracking-tight md:text-3xl">
                 I'm Arya, a high school junior. I like taking things that are messy or invisible — club logistics, reef
@@ -103,14 +101,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="contact" className="scroll-mt-20 border-t border-border/70">
+      <section id="contact" className="scroll-mt-20 border-t border-border/60">
         <div className="site-container py-16 md:py-24">
           <div className="grid gap-6 md:grid-cols-12">
-            <p className="kicker md:col-span-4">Contact</p>
+            <p className="text-sm text-muted-foreground md:col-span-4">Contact</p>
             <div className="md:col-span-8">
-              <h2 className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">Say hi.</h2>
+              <h2 className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">Reach me.</h2>
               <p className="mt-3 max-w-xl leading-7 text-muted-foreground">
-                Discord is fastest. Email works too — I check it occasionally, honestly.
+                Discord is usually quickest. Email is fine too.
               </p>
 
               <ul className="mt-8 max-w-xl">
@@ -126,11 +124,9 @@ export default function HomePage() {
                 ].map((row) => (
                   <li
                     key={row.label}
-                    className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border/70 py-3.5 last:border-b-0"
+                    className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border/60 py-3.5 last:border-b-0"
                   >
-                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                      {row.label}
-                    </span>
+                    <span className="text-sm text-muted-foreground">{row.label}</span>
                     <a
                       href={row.href}
                       {...(row.external ? { target: "_blank", rel: "noreferrer" } : {})}

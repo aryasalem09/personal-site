@@ -1,4 +1,6 @@
 import { Link, useParams } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+
 import { blogPosts } from "@/content/blog";
 
 export default function BlogPostPage() {
@@ -7,15 +9,21 @@ export default function BlogPostPage() {
 
   if (!post) {
     return (
-      <section className="py-16 md:py-20">
-        <div className="slide-inner max-w-4xl">
-          <p className="kicker">Missing Entry</p>
-          <h1 className="mt-4 max-w-[18ch] text-4xl font-semibold leading-tight text-slate-100 md:text-5xl lg:text-6xl">Blog post not found</h1>
-          <p className="note">
-            This slug does not exist yet. Add entries in <code>src/content/blog.ts</code>.
+      <section className="site-container py-16 md:py-24">
+        <div className="max-w-2xl">
+          <p className="kicker">404</p>
+          <h1 className="mt-3 text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl">
+            No post here.
+          </h1>
+          <p className="mt-5 leading-7 text-muted-foreground">
+            That link doesn't match anything published. It may have moved, or it never existed.
           </p>
-          <Link to="/blog" className="soft-link mt-8 inline-flex text-base">
-            Back to blog list
+          <Link
+            to="/blog"
+            className="mt-8 inline-flex items-center gap-2 rounded-sm font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground outline-none transition-colors hover:text-signal focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          >
+            <ArrowLeft className="size-3.5" />
+            Back to the blog
           </Link>
         </div>
       </section>
@@ -23,22 +31,28 @@ export default function BlogPostPage() {
   }
 
   return (
-    <section className="py-16 md:py-20">
-      <div className="slide-inner max-w-4xl">
+    <section className="site-container py-16 md:py-24">
+      <article className="max-w-2xl">
         <p className="kicker">{post.publishedAt}</p>
-        <h1 className="mt-4 max-w-[18ch] text-5xl font-semibold leading-[1.02] text-slate-100 md:text-6xl lg:text-7xl">{post.title}</h1>
-        <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-200/74 md:text-xl lg:text-2xl">{post.excerpt}</p>
+        <h1 className="mt-3 text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl">
+          {post.title}
+        </h1>
+        <p className="mt-5 text-pretty text-lg leading-8 text-muted-foreground">{post.excerpt}</p>
 
-        <div className="note mt-10 space-y-5 text-base leading-relaxed md:text-lg">
+        <div className="mt-10 space-y-5 leading-8">
           {post.body.map((paragraph) => (
             <p key={`${post.slug}-${paragraph.slice(0, 18)}`}>{paragraph}</p>
           ))}
         </div>
 
-        <Link to="/blog" className="soft-link mt-8 inline-flex text-base">
-          Back to blog
+        <Link
+          to="/blog"
+          className="mt-10 inline-flex items-center gap-2 rounded-sm font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground outline-none transition-colors hover:text-signal focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        >
+          <ArrowLeft className="size-3.5" />
+          Back to the blog
         </Link>
-      </div>
+      </article>
     </section>
   );
 }

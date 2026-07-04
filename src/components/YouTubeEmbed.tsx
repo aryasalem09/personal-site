@@ -19,12 +19,12 @@ export default function YouTubeEmbed({
 
   return (
     <div
-      className={`relative overflow-hidden rounded-[1.35rem] border border-white/10 bg-black/35 shadow-[0_18px_40px_rgba(2,6,23,0.28)] ${className}`.trim()}
+      className={`relative overflow-hidden rounded-lg border border-border bg-card shadow-soft ${className}`.trim()}
     >
       <div className={`w-full ${aspectClassName}`.trim()}>
         {isLoaded ? (
           <iframe
-            className="pointer-events-auto h-full w-full"
+            className="h-full w-full"
             src={`https://www.youtube.com/embed/${youtubeId}?rel=0&autoplay=1`}
             title={title}
             loading="lazy"
@@ -36,19 +36,19 @@ export default function YouTubeEmbed({
           <button
             type="button"
             onClick={() => setIsLoaded(true)}
-            className="group relative flex h-full w-full items-center justify-center overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+            className="group relative flex h-full w-full items-center justify-center overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             aria-label={`Play ${title}`}
           >
             <img
               src={thumbnailUrl}
               alt=""
               loading="lazy"
-              className="h-full w-full object-cover opacity-75 transition duration-200 group-hover:scale-[1.01] group-hover:opacity-90"
+              className="h-full w-full object-cover opacity-90 transition-opacity duration-200 group-hover:opacity-100"
             />
-            <span className="absolute inset-0 bg-slate-950/30" />
-            <span className="absolute inline-flex items-center gap-3 rounded-full border border-white/15 bg-slate-950/72 px-5 py-3 text-sm font-semibold text-slate-100 shadow-[0_18px_45px_rgba(0,0,0,0.35)] transition group-hover:bg-slate-900/88">
-              <Play data-icon="inline-start" />
-              Play performance
+            <span className="absolute inset-0 bg-foreground/10 transition-colors group-hover:bg-foreground/5" />
+            <span className="absolute inline-flex items-center gap-2.5 rounded-full border border-border bg-background/90 px-5 py-2.5 font-mono text-xs uppercase tracking-[0.16em] text-foreground shadow-soft backdrop-blur transition-colors group-hover:border-signal/50">
+              <Play className="size-3.5" />
+              Play
             </span>
           </button>
         )}

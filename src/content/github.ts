@@ -36,7 +36,7 @@ export const projects: Project[] = [
     owner: "aryasalem09",
     url: "https://github.com/aryasalem09/coral-bleaching-tracker",
     description:
-      "A small climate-data interface for looking at reef stress and coral bleaching signals.",
+      "A small climate-data interface for looking at reef stress and coral bleaching.",
     language: "TypeScript",
     year: "2026",
     kind: "climate",

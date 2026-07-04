@@ -1,9 +1,8 @@
 # personal site
 
-this is my personal website! blog posts coming when they're worth reading.
+A small personal site for projects, quartet recordings, and notes on things I’m building.
 
-Vite + React + TypeScript + Tailwind. Light "field notes" theme with a dark mode toggle,
-no WebGL, no smooth-scroll library — just fast static pages.
+Built with Vite, React, TypeScript, Tailwind, and a couple of carefully gated React Bits effects.
 
 ## commands
 
@@ -15,4 +14,6 @@ npm run lint     # eslint
 npm run preview  # preview the production build
 ```
 
-Content lives in `src/content/` (projects, performances, blog posts).
+Videos are click-to-load. Enhanced effects are desktop-only and respect reduced-motion/device gates.
+
+Content lives in `src/content/` (projects, performances).

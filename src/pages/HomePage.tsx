@@ -59,7 +59,7 @@ export default function HomePage() {
               Quartet recordings
             </h2>
             <p className="mt-4 leading-7 text-muted-foreground">
-              A few recordings from Ballard House. The videos load only when you press play.
+              A few recordings from Ballard House.
             </p>
           </div>
 

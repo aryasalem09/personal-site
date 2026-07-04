@@ -2,6 +2,8 @@ export const githubProfile = { handle: "aryasalem09", url: "https://github.com/a
 
 export type Project = {
   name: string;
+  /** Human-readable display name; falls back to the repo slug. */
+  title?: string;
   owner: string;
   url: string;
   liveUrl?: string;
@@ -16,6 +18,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     name: "SLHS-HackClub-Website",
+    title: "SLHS Hack Club",
     owner: "aryaSalem09",
     url: "https://github.com/aryasalem09/SLHS-HackClub-Website",
     description: "A polished site for SLHS Hack Club with event information, club identity, and student-friendly navigation.",
@@ -27,6 +30,7 @@ export const projects: Project[] = [
   },
   {
     name: "coral-bleaching-tracker",
+    title: "Coral Bleaching Tracker",
     owner: "aryasalem09",
     url: "https://github.com/aryasalem09/coral-bleaching-tracker",
     description: "A data-focused coral bleaching tracker for exploring reef stress signals and environmental context.",
@@ -49,6 +53,7 @@ export const projects: Project[] = [
   },
   {
     name: "Monte-Carlo-Pi-Estimator-",
+    title: "Monte Carlo Pi Estimator",
     owner: "aryasalem09",
     url: "https://github.com/aryasalem09/Monte-Carlo-Pi-Estimator-",
     description: "A compact Fortran implementation that estimates pi with Monte Carlo sampling.",
@@ -59,6 +64,7 @@ export const projects: Project[] = [
   },
   {
     name: "webpage",
+    title: "SLHS TSA Webpage",
     owner: "slhstsa",
     url: "https://github.com/slhstsa/webpage",
     description: "A TSA webmaster project site for the 2025-2026 school year.",

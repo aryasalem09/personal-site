@@ -1,109 +1,107 @@
+import type { MouseEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { FaGithub } from "react-icons/fa";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import type { Project } from "@/content/github";
+import { cn } from "@/lib/utils";
 
 interface ProjectCardProps {
   project: Project;
+  flagship?: boolean;
+  showTrace?: boolean;
+  className?: string;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
-  return (
-    <Card
-      data-cursor-target
-      className="spotlight-card group flex h-full flex-col border-white/10 bg-white/[0.045] text-slate-100 shadow-[0_20px_80px_rgba(2,6,23,0.24)] transition duration-200 hover:-translate-y-0.5 hover:border-cyan-200/30 hover:bg-white/[0.07]"
-    >
-      <CardHeader className="grid-cols-[1fr_auto] gap-x-4 gap-y-2">
-        <CardTitle className="text-xl leading-tight md:text-2xl">
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noreferrer"
-            data-cursor-target
-            className="rounded-sm outline-none transition hover:text-cyan-100 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-          >
-            {project.name}
-          </a>
-        </CardTitle>
-        <CardDescription className="text-sm leading-relaxed text-slate-300/74">
-          {project.description}
-        </CardDescription>
-        <CardAction>
-          {project.language ? (
-            <Badge variant="outline" className="border-cyan-200/20 bg-cyan-300/[0.08] text-cyan-100">
-              {project.language}
-            </Badge>
-          ) : null}
-        </CardAction>
-      </CardHeader>
+function trackPointer(event: MouseEvent<HTMLElement>) {
+  const rect = event.currentTarget.getBoundingClientRect();
+  event.currentTarget.style.setProperty("--x", `${event.clientX - rect.left}px`);
+  event.currentTarget.style.setProperty("--y", `${event.clientY - rect.top}px`);
+}
 
-      <CardContent className="flex flex-1 flex-col gap-4">
-        <div className="flex flex-wrap gap-2">
-          {project.status ? (
-            <Badge variant="secondary" className="bg-white/10 text-slate-100 hover:bg-white/10">
-              {project.status}
-            </Badge>
-          ) : null}
+export default function ProjectCard({ project, flagship = false, showTrace = false, className }: ProjectCardProps) {
+  return (
+    <article
+      onMouseMove={trackPointer}
+      className={cn(
+        "group relative isolate flex flex-col overflow-hidden rounded-lg border border-border bg-card/80 shadow-soft transition-all duration-300 [--x:50%] [--y:50%]",
+        "before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:opacity-0 before:transition-opacity before:duration-300",
+        "before:bg-[radial-gradient(380px_circle_at_var(--x)_var(--y),hsl(var(--signal)/0.09),transparent_45%)]",
+        "hover:-translate-y-0.5 hover:border-signal/40 hover:before:opacity-100 motion-reduce:hover:translate-y-0",
+        flagship ? "p-6 md:p-8" : "p-6",
+        className,
+      )}
+    >
+      <div className="mb-4 flex items-start justify-between gap-4">
+        <div>
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+            {[project.status, project.year].filter(Boolean).join(" · ")}
+          </p>
+          <h3
+            className={cn(
+              "mt-2.5 font-semibold tracking-tight",
+              flagship ? "text-2xl md:text-3xl" : "text-xl md:text-2xl",
+            )}
+          >
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-sm outline-none after:absolute after:inset-0 hover:text-signal focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              {project.title ?? project.name}
+            </a>
+          </h3>
+        </div>
+
+        <span
+          aria-hidden="true"
+          className="rounded-full border border-border bg-background/70 p-2 text-muted-foreground transition-colors group-hover:border-signal/50 group-hover:text-signal"
+        >
+          <ArrowUpRight className="size-4" />
+        </span>
+      </div>
+
+      <p className={cn("max-w-xl text-pretty leading-7 text-muted-foreground", flagship ? "text-base" : "text-sm leading-6")}>
+        {project.description}
+      </p>
+
+      {showTrace ? <DataTrace /> : null}
+
+      <div className="mt-auto pt-6">
+        <div className="flex flex-wrap gap-1.5">
+          {project.language ? <span className="chip border-signal/30 text-signal">{project.language}</span> : null}
           {project.tags.map((tag) => (
-            <Badge key={tag} variant="outline" className="border-white/10 text-slate-300/82">
+            <span key={tag} className="chip">
               {tag}
-            </Badge>
+            </span>
           ))}
         </div>
 
-        <div className="mt-auto font-['JetBrains_Mono'] text-xs uppercase tracking-[0.18em] text-slate-400">
-          {project.owner}
-          {project.year ? ` / ${project.year}` : ""}
-        </div>
-      </CardContent>
+        <p className="mt-4 truncate font-mono text-[10px] tracking-[0.08em] text-muted-foreground/70">
+          github.com/{project.owner.toLowerCase()}/{project.name}
+        </p>
+      </div>
+    </article>
+  );
+}
 
-      <Separator className="bg-white/10" />
-
-      <CardFooter className="flex-wrap gap-2 pt-5">
-        <Button asChild size="sm" className="bg-cyan-200 text-slate-950 hover:bg-cyan-100">
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={`Open ${project.name} repository`}
-            data-cursor-target
-          >
-            <FaGithub data-icon="inline-start" />
-            Repo
-          </a>
-        </Button>
-        {project.liveUrl ? (
-          <Button
-            asChild
-            size="sm"
-            variant="outline"
-            className="border-white/[0.12] bg-white/[0.04] text-slate-100 hover:bg-white/10 hover:text-slate-100"
-          >
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`Open ${project.name} live demo`}
-              data-cursor-target
-            >
-              Live
-              <ArrowUpRight data-icon="inline-end" />
-            </a>
-          </Button>
-        ) : null}
-      </CardFooter>
-    </Card>
+function DataTrace() {
+  return (
+    <div className="mt-6 rounded-md border border-border bg-background/60 p-4">
+      <div className="mb-2 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+        <span>reef stress trace</span>
+        <span className="text-ember">sample</span>
+      </div>
+      <svg viewBox="0 0 320 72" role="img" aria-label="Sample reef stress data trace" className="h-16 w-full">
+        <path
+          d="M0 60 C 28 58, 40 50, 64 48 S 108 54, 132 44 S 172 22, 200 30 S 248 48, 276 26 S 304 20, 320 14"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          className="text-ember"
+        />
+        <path d="M0 64 H320" stroke="currentColor" strokeWidth="1" strokeDasharray="3 7" className="text-border" />
+      </svg>
+    </div>
   );
 }

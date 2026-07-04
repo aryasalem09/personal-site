@@ -1,18 +1,35 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AdaptiveFaultyTerminalBackground from "@/components/AdaptiveFaultyTerminalBackground";
-import SmoothScrollProvider from "@/components/SmoothScrollProvider";
-import TargetCursorLite from "@/components/TargetCursorLite";
+import { useEffect } from "react";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+
 import SiteShell from "@/layouts/SiteShell";
 import BlogListPage from "@/pages/BlogListPage";
 import BlogPostPage from "@/pages/BlogPostPage";
 import HomePage from "@/pages/HomePage";
 import ProjectsPage from "@/pages/ProjectsPage";
 
-function RoutedApp() {
+function ScrollManager() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const target = document.getElementById(location.hash.slice(1));
+      if (target) {
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+        return;
+      }
+    }
+
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [location.pathname, location.hash]);
+
+  return null;
+}
+
+export default function App() {
   return (
-    <div className="relative min-h-screen text-slate-100">
-      <AdaptiveFaultyTerminalBackground />
-      <TargetCursorLite />
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <ScrollManager />
       <Routes>
         <Route element={<SiteShell />}>
           <Route path="/" element={<HomePage />} />
@@ -21,16 +38,6 @@ function RoutedApp() {
           <Route path="/blog/:slug" element={<BlogPostPage />} />
         </Route>
       </Routes>
-    </div>
-  );
-}
-
-export default function App() {
-  return (
-    <BrowserRouter>
-      <SmoothScrollProvider>
-        <RoutedApp />
-      </SmoothScrollProvider>
     </BrowserRouter>
   );
 }

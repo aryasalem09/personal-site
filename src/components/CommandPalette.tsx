@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ExternalLink, FileText, Home, Music, Search, Send, Sparkles } from "lucide-react";
-import { FaGithub } from "react-icons/fa";
+import { Command as CommandIcon, ExternalLink, FileText, Home, Mail, Music, Send, Sparkles, User } from "lucide-react";
 
 import {
   CommandDialog,
@@ -13,15 +12,17 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command";
-import { projects } from "@/content/github";
+import { GithubIcon } from "@/components/icons";
+import { githubProfile, projects } from "@/content/github";
 
 const navActions = [
-  { label: "Home", value: "home", href: "/#home", icon: Home },
-  { label: "Projects", value: "projects", href: "/projects", icon: Sparkles },
+  { label: "Home", value: "home", href: "/", icon: Home },
+  { label: "Selected work", value: "work", href: "/#work", icon: Sparkles },
   { label: "Music", value: "music", href: "/#music", icon: Music },
-  { label: "About", value: "about", href: "/#about", icon: Search },
+  { label: "About", value: "about", href: "/#about", icon: User },
   { label: "Contact", value: "contact", href: "/#contact", icon: Send },
   { label: "Blog", value: "blog", href: "/blog", icon: FileText },
+  { label: "All projects", value: "all-projects", href: "/projects", icon: FileText },
 ];
 
 export default function CommandPalette() {
@@ -37,22 +38,8 @@ export default function CommandPalette() {
     };
 
     window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
-
-  const projectActions = useMemo(
-    () =>
-      projects.map((project) => ({
-        label: project.name,
-        value: `project-${project.name}`,
-        url: project.url,
-        detail: project.language ?? project.status ?? "GitHub",
-      })),
-    [],
-  );
 
   const runInternalAction = (href: string) => {
     setOpen(false);
@@ -68,45 +55,53 @@ export default function CommandPalette() {
     <>
       <button
         type="button"
-        data-cursor-target
         onClick={() => setOpen(true)}
-        className="rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 font-['JetBrains_Mono'] text-xs uppercase tracking-[0.18em] text-cyan-100 outline-none transition hover:border-cyan-200/30 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
         aria-label="Open command palette"
+        className="hidden h-9 items-center gap-1.5 rounded-full border border-border bg-card/70 px-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground outline-none transition-colors hover:border-signal/50 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background md:inline-flex"
       >
-        Cmd K
+        <CommandIcon className="size-3" />
+        K
       </button>
 
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Jump to a section, page, or project..." />
+        <CommandInput placeholder="Jump to a section, page, or repo..." />
         <CommandList>
           <CommandEmpty>No matching command.</CommandEmpty>
 
-          <CommandGroup heading="Navigation">
+          <CommandGroup heading="Navigate">
             {navActions.map((action) => {
               const Icon = action.icon;
-
               return (
                 <CommandItem key={action.value} value={action.value} onSelect={() => runInternalAction(action.href)}>
-                  <Icon data-icon="inline-start" />
+                  <Icon className="mr-2 size-4" />
                   <span>{action.label}</span>
                 </CommandItem>
               );
             })}
-            <CommandItem value="github-profile" onSelect={() => runExternalAction("https://github.com/aryasalem09")}>
-              <FaGithub data-icon="inline-start" />
-              <span>GitHub</span>
-              <CommandShortcut>external</CommandShortcut>
-            </CommandItem>
           </CommandGroup>
 
           <CommandSeparator />
 
-          <CommandGroup heading="Project repos">
-            {projectActions.map((project) => (
-              <CommandItem key={project.value} value={project.value} onSelect={() => runExternalAction(project.url)}>
-                <ExternalLink data-icon="inline-start" />
-                <span>{project.label}</span>
-                <CommandShortcut>{project.detail}</CommandShortcut>
+          <CommandGroup heading="Elsewhere">
+            <CommandItem value="github-profile" onSelect={() => runExternalAction(githubProfile.url)}>
+              <GithubIcon className="mr-2 size-4" />
+              <span>GitHub profile</span>
+              <CommandShortcut>external</CommandShortcut>
+            </CommandItem>
+            <CommandItem value="email" onSelect={() => runExternalAction("mailto:aryasalem@icloud.com")}>
+              <Mail className="mr-2 size-4" />
+              <span>Email Arya</span>
+              <CommandShortcut>mail</CommandShortcut>
+            </CommandItem>
+            {projects.map((project) => (
+              <CommandItem
+                key={project.name}
+                value={`repo-${project.name}`}
+                onSelect={() => runExternalAction(project.url)}
+              >
+                <ExternalLink className="mr-2 size-4" />
+                <span>{project.name}</span>
+                <CommandShortcut>{project.language ?? "repo"}</CommandShortcut>
               </CommandItem>
             ))}
           </CommandGroup>

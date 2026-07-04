@@ -1,43 +1,60 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    font-family: "Space Grotesk", sans-serif;
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 187 92% 69%;
-    --primary-foreground: 222.2 84% 4.9%;
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 217 33% 17%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 215 28% 17%;
-    --input: 215 28% 17%;
-    --ring: 187 92% 69%;
-    --radius: 0.75rem;
+    /* field notes: warm paper, ink text, one cool accent (signal), one warm accent (ember) */
+    --background: 44 36% 96%;
+    --foreground: 222 30% 14%;
+    --card: 42 40% 99%;
+    --card-foreground: 222 30% 14%;
+    --popover: 42 40% 99%;
+    --popover-foreground: 222 30% 14%;
+    --primary: 205 85% 32%;
+    --primary-foreground: 44 40% 97%;
+    --secondary: 44 22% 89%;
+    --secondary-foreground: 222 30% 14%;
+    --muted: 44 22% 89%;
+    --muted-foreground: 222 12% 41%;
+    --accent: 205 45% 91%;
+    --accent-foreground: 222 30% 14%;
+    --destructive: 0 62% 42%;
+    --destructive-foreground: 44 40% 97%;
+    --border: 42 16% 83%;
+    --input: 42 16% 78%;
+    --ring: 205 85% 32%;
+    --radius: 1rem;
+    --signal: 205 85% 32%;
+    --ember: 28 85% 42%;
+    --line: 215 22% 46%;
+    --shadow: 222 30% 20%;
   }
 
-  html,
-  body {
-    margin: 0;
-    min-height: 100%;
-    font-size: 16px;
+  .dark {
+    --background: 222 28% 8%;
+    --foreground: 42 22% 90%;
+    --card: 222 24% 11%;
+    --card-foreground: 42 22% 90%;
+    --popover: 222 24% 10%;
+    --popover-foreground: 42 22% 90%;
+    --primary: 203 72% 66%;
+    --primary-foreground: 222 28% 10%;
+    --secondary: 222 18% 16%;
+    --secondary-foreground: 42 22% 90%;
+    --muted: 222 18% 16%;
+    --muted-foreground: 220 12% 63%;
+    --accent: 222 18% 18%;
+    --accent-foreground: 42 22% 90%;
+    --destructive: 0 62% 52%;
+    --destructive-foreground: 42 22% 90%;
+    --border: 222 15% 21%;
+    --input: 222 15% 26%;
+    --ring: 203 72% 66%;
+    --signal: 203 72% 66%;
+    --ember: 34 82% 60%;
+    --line: 214 28% 72%;
+    --shadow: 222 40% 2%;
   }
 
   html {
@@ -45,247 +62,19 @@
   }
 
   body {
-    font-size: 16px;
+    @apply min-h-svh bg-background font-sans text-foreground antialiased;
     min-width: 320px;
-    color: rgb(226 232 240);
-    background: rgb(2 6 23);
-    transform: none;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
   }
 
-  a,
-  button,
-  [role="button"] {
-    cursor: pointer;
+  ::selection {
+    background: hsl(var(--signal) / 0.22);
   }
 
   a {
     color: inherit;
     text-decoration: none;
-  }
-
-  #root {
-    position: relative;
-    min-height: 100vh;
-    isolation: isolate;
-    transform: none;
-  }
-}
-
-@layer components {
-  .slide {
-    @apply relative min-h-[100vh] flex items-center;
-  }
-
-  .slide-inner {
-    @apply mx-auto w-full max-w-6xl px-6 md:px-10;
-  }
-
-  .slide-divider {
-    @apply pointer-events-none absolute inset-x-0 top-0 h-px;
-    background:
-      linear-gradient(to right, transparent, rgba(103, 232, 249, 0.22), transparent),
-      linear-gradient(to right, transparent 30%, rgba(190, 242, 100, 0.12), transparent 70%);
-  }
-
-  .lab-section::before {
-    content: attr(data-section-id);
-    @apply pointer-events-none absolute right-6 top-24 z-10 hidden font-['JetBrains_Mono'] text-[10px] uppercase tracking-[0.22em] md:block;
-    color: rgba(207, 250, 254, 0.28);
-  }
-
-  .lab-section::after {
-    content: "";
-    @apply pointer-events-none absolute inset-x-0 top-0 h-28 opacity-70;
-    background:
-      linear-gradient(to bottom, rgba(103, 232, 249, 0.045), transparent),
-      repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 9px);
-    mask-image: linear-gradient(to bottom, black, transparent);
-  }
-
-  .terminal-readout {
-    @apply rounded-md border border-cyan-200/[0.15] bg-slate-950/[0.45] px-3 py-1.5 font-['JetBrains_Mono'] text-[11px] uppercase tracking-[0.18em] text-cyan-100/[0.72] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)];
-  }
-
-  .data-chip {
-    @apply rounded-full border border-cyan-200/[0.15] bg-cyan-200/[0.06] px-3 py-1.5;
-  }
-
-  .data-chip--lime {
-    @apply border-lime-200/[0.15] bg-lime-200/[0.06];
-  }
-
-  .data-chip--dim {
-    @apply border-white/10 bg-white/[0.04];
-  }
-
-  .kicker {
-    @apply font-['JetBrains_Mono'] text-xs md:text-sm uppercase tracking-[0.34em] text-cyan-100/[0.65];
-  }
-
-  .title {
-    @apply mt-4 max-w-[18ch] text-5xl md:text-6xl lg:text-7xl font-semibold leading-[0.98] text-slate-100;
-  }
-
-  .subtitle {
-    @apply mt-7 md:mt-8 max-w-3xl text-lg md:text-xl lg:text-2xl leading-relaxed text-slate-200/[0.75];
-  }
-
-  .big-btn {
-    @apply rounded-full bg-white/10 px-7 py-3.5 text-lg md:text-xl font-medium text-slate-100 outline-none transition hover:bg-white/[0.14] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950;
-  }
-
-  .ghost-btn {
-    @apply rounded-full bg-white/[0.07] px-7 py-3.5 text-lg md:text-xl font-medium text-slate-100/90 outline-none transition hover:bg-white/[0.11] hover:text-slate-100 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950;
-  }
-
-  .soft-link {
-    @apply rounded-sm text-slate-200/[0.75] underline decoration-white/20 underline-offset-4 outline-none transition hover:text-slate-100 hover:decoration-white/[0.35] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950;
-  }
-
-  .note {
-    @apply mt-8 rounded-2xl bg-white/[0.045] px-5 py-4 text-base md:text-lg text-slate-200/70;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  }
-
-  .note code {
-    @apply rounded-md bg-black/25 px-2 py-1 font-['JetBrains_Mono'] text-sm text-slate-100/[0.85];
-  }
-
-  .faulty-terminal-lite {
-    @apply absolute inset-0 overflow-hidden;
-    opacity: 0.58;
-  }
-
-  .faulty-terminal-lite::before {
-    content: "";
-    @apply absolute inset-0;
-    background: repeating-linear-gradient(
-      to bottom,
-      rgba(103, 232, 249, 0.07) 0,
-      rgba(103, 232, 249, 0.07) 1px,
-      transparent 1px,
-      transparent 5px
-    );
-    mix-blend-mode: screen;
-    opacity: 0.32;
-  }
-
-  .faulty-terminal-lite::after {
-    content: "";
-    @apply absolute inset-0;
-    background:
-      radial-gradient(circle at 50% 38%, transparent 0 28%, rgba(2, 6, 23, 0.18) 58%, rgba(2, 6, 23, 0.76) 100%),
-      linear-gradient(90deg, rgba(2, 6, 23, 0.4), transparent 18% 82%, rgba(2, 6, 23, 0.44));
-  }
-
-  .faulty-terminal-lite__glow {
-    @apply absolute left-1/2 top-1/2 h-[60vh] w-[70vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/10 blur-3xl;
-    animation: terminal-flicker 6.5s steps(5, end) infinite;
-  }
-
-  .faulty-terminal-lite__glyphs {
-    @apply absolute inset-x-0 top-8 m-0 select-none whitespace-pre font-['JetBrains_Mono'] text-[10px] leading-[1.55] text-cyan-100/25;
-    transform: rotate(-1deg) scale(1.04);
-    text-shadow: 0 0 18px rgba(103, 232, 249, 0.25);
-  }
-
-  .faulty-terminal-lite__glyphs span {
-    @apply block;
-  }
-
-  .target-cursor-lite {
-    @apply pointer-events-none fixed left-0 top-0 z-[80] hidden size-8 rounded-full border border-cyan-200/70 opacity-0 mix-blend-screen transition-[width,height,opacity,border-color,background-color,box-shadow] duration-150 ease-out lg:block;
-    box-shadow: 0 0 24px rgba(103, 232, 249, 0.2);
-    transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
-  }
-
-  .target-cursor-lite[data-enabled="true"] {
-    opacity: 0.72;
-  }
-
-  .target-cursor-lite[data-active="true"] {
-    @apply size-12 border-lime-200/80 bg-cyan-200/10;
-    box-shadow: 0 0 34px rgba(190, 242, 100, 0.22), inset 0 0 18px rgba(103, 232, 249, 0.12);
-  }
-
-  .terminal-status-panel {
-    @apply relative overflow-hidden rounded-2xl border border-cyan-200/[0.15] bg-slate-950/[0.55] text-slate-100 shadow-[0_30px_100px_rgba(2,6,23,0.42)] backdrop-blur-xl;
-  }
-
-  .terminal-status-panel::before {
-    content: "";
-    @apply pointer-events-none absolute inset-0;
-    background:
-      linear-gradient(90deg, rgba(103, 232, 249, 0.12), transparent 34%),
-      repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 8px);
-  }
-
-  .terminal-status-panel__line {
-    @apply relative flex flex-wrap items-center gap-2 font-['JetBrains_Mono'] text-sm;
-    color: rgba(226, 232, 240, 0.86);
-    animation: terminal-line-in 520ms ease both;
-  }
-
-  .spotlight-card {
-    @apply relative overflow-hidden;
-  }
-
-  .spotlight-card::before {
-    content: "";
-    @apply pointer-events-none absolute inset-0 opacity-0 transition duration-300;
-    background:
-      radial-gradient(circle at 18% 0%, rgba(103, 232, 249, 0.18), transparent 32%),
-      radial-gradient(circle at 86% 12%, rgba(190, 242, 100, 0.12), transparent 28%);
-  }
-
-  .spotlight-card:hover::before,
-  .spotlight-card:focus-within::before {
-    opacity: 1;
-  }
-
-  .repo-filter-panel {
-    @apply relative;
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.055),
-      0 24px 90px rgba(2, 6, 23, 0.24);
-  }
-
-  .repo-filter-panel::before {
-    content: "";
-    @apply pointer-events-none absolute inset-x-5 top-0 h-px;
-    background: linear-gradient(to right, transparent, rgba(103, 232, 249, 0.32), transparent);
-  }
-
-  .magnetic-cta {
-    @apply transition-transform duration-200 ease-out hover:-translate-y-1 hover:scale-[1.015] active:translate-y-0 active:scale-[0.995];
-  }
-
-  [data-snap-section] {
-    scroll-margin-top: 5rem;
-  }
-
-  @keyframes terminal-flicker {
-    0%,
-    100% {
-      opacity: 0.78;
-    }
-    48% {
-      opacity: 0.52;
-    }
-    52% {
-      opacity: 0.88;
-    }
-  }
-
-  @keyframes terminal-line-in {
-    from {
-      opacity: 0;
-      transform: translateY(6px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -298,18 +87,38 @@
     *::after {
       animation-duration: 0.001ms !important;
       animation-iteration-count: 1 !important;
-      scroll-behavior: auto !important;
       transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
     }
+  }
+}
 
-    .faulty-terminal-lite__glow,
-    .terminal-status-panel__line {
-      animation: none !important;
-      opacity: 1;
-    }
+@layer components {
+  /* graph-paper backdrop — static, no JS, no filters */
+  .notebook-grid {
+    background-image:
+      linear-gradient(hsl(var(--line) / 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--line) / 0.08) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
 
-    .target-cursor-lite {
-      display: none !important;
-    }
+  .site-container {
+    @apply mx-auto w-full max-w-site px-5 md:px-8;
+  }
+
+  .kicker {
+    @apply font-mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground;
+  }
+
+  .chip {
+    @apply rounded-full border border-border bg-card/70 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground;
+  }
+
+  .icon-button {
+    @apply inline-flex size-9 items-center justify-center rounded-full border border-border bg-card/70 text-muted-foreground outline-none transition-colors hover:border-signal/50 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  .quiet-link {
+    @apply rounded-sm underline decoration-border decoration-[0.08em] underline-offset-[0.2em] outline-none transition-colors hover:decoration-signal focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
   }
 }

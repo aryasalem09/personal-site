@@ -1,65 +1,42 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 import SiteTargetCursor from "@/components/effects/SiteTargetCursor";
+import TerminalBackdrop from "@/components/effects/TerminalBackdrop";
 import ThemeToggle from "@/components/ThemeToggle";
-import { githubProfile } from "@/content/github";
-
-function PaperBackground() {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none fixed inset-0 -z-10 bg-background"
-    />
-  );
-}
 
 export default function SiteShell() {
   return (
     <div className="relative flex min-h-svh flex-col">
       <SiteTargetCursor />
-      <PaperBackground />
+      <TerminalBackdrop />
 
       <a
         href="#main"
-        className="sr-only rounded-md bg-card px-3 py-2 text-xs focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50"
+        className="sr-only rounded-md bg-paper px-3 py-2 text-sm text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50"
       >
-        Skip to content
+        Skip to the book
       </a>
 
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
-        <div className="site-container flex h-14 items-center justify-between gap-6">
-          <Link
-            to="/"
-            className="rounded-sm font-medium tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-          >
-            arya.salem
-          </Link>
+      {/* the theme toggle floats like a lamp switch — always reachable, never a whole header */}
+      <div className="fixed right-3 top-3 z-40 flex items-center gap-2 rounded-full border-2 border-edge bg-paper/90 px-2 py-1 shadow-hard-sm backdrop-blur">
+        <span className="hidden pl-1.5 font-mono text-[0.65rem] uppercase tracking-wide text-ink-soft sm:inline">
+          desk lamp
+        </span>
+        <ThemeToggle />
+      </div>
 
-          <nav aria-label="Main" className="flex items-center gap-1 text-sm text-muted-foreground sm:gap-2">
-            <Link to="/#work" className="cursor-target inline-flex rounded-md px-1.5 py-1 transition hover:text-foreground">Work</Link>
-            <Link to="/#music" className="cursor-target inline-flex rounded-md px-1.5 py-1 transition hover:text-foreground">Music</Link>
-            <Link to="/#contact" className="cursor-target inline-flex rounded-md px-1.5 py-1 transition hover:text-foreground">Contact</Link>
-            <a
-              href={githubProfile.url}
-              target="_blank"
-              rel="noreferrer"
-              className="cursor-target hidden rounded-md px-1.5 py-1 transition hover:text-foreground min-[380px]:inline-flex"
-            >
-              GitHub
-            </a>
-            <ThemeToggle />
-          </nav>
-        </div>
-      </header>
-
-      <main id="main" className="flex-1">
+      <main id="main" className="flex flex-1 items-center justify-center">
         <Outlet />
       </main>
 
-      <footer className="border-t border-border/60">
-        <div className="site-container flex flex-col gap-1 py-8 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <p>&copy; {new Date().getFullYear()} Arya Salem</p>
-          <p>made after school and rehearsal.</p>
+      <footer className="relative z-10">
+        <div className="site-container flex flex-col items-center gap-1 py-6 text-center">
+          <p className="font-hand text-xl text-[hsl(44_46%_88%)] mix-blend-difference">
+            made after school and rehearsal.
+          </p>
+          <p className="font-mono text-[0.7rem] text-[hsl(44_46%_88%/0.7)] mix-blend-difference">
+            &copy; {new Date().getFullYear()} Arya Salem · built by hand
+          </p>
         </div>
       </footer>
     </div>

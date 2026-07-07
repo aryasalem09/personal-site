@@ -10,7 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/fraunces": "^5.2.9",
+    "@fontsource/caveat": "^5.2.8",
+    "@fontsource/ibm-plex-mono": "^5.2.7",
     "@fontsource/ibm-plex-sans": "^5.2.8",
+    "@fontsource/patrick-hand": "^5.2.8",
+    "@fontsource/permanent-marker": "^5.2.7",
     "clsx": "^2.1.1",
     "gsap": "^3.15.0",
     "lucide-react": "^1.16.0",

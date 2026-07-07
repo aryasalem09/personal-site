@@ -9,6 +9,9 @@ export type Project = {
   language?: string;
   year?: string;
   kind: ProjectKind;
+  // short marker label for the filing tab
+  tag: string;
+  // handwritten note in the margin — why this one is here
   note: string;
 };
 
@@ -21,14 +24,15 @@ export const projects: Project[] = [
   {
     name: "SLHS-HackClub-Website",
     title: "SLHS Hack Club",
-    owner: "aryaSalem09",
+    owner: "aryasalem09",
     url: "https://github.com/aryasalem09/SLHS-HackClub-Website",
     description:
-      "A club website for announcements, meetings, and making the Hack Club feel real outside the room.",
+      "The club site — meeting times, announcements, and somewhere to send new members when they ask what Hack Club is.",
     language: "TypeScript",
     year: "2026",
     kind: "club",
-    note: "The one I would show first because it has an actual audience at school.",
+    tag: "club site",
+    note: "The one I'd show first. It has an actual audience at school.",
   },
   {
     name: "coral-bleaching-tracker",
@@ -36,11 +40,12 @@ export const projects: Project[] = [
     owner: "aryasalem09",
     url: "https://github.com/aryasalem09/coral-bleaching-tracker",
     description:
-      "A small climate-data interface for looking at reef stress and coral bleaching.",
+      "A small map for reading reef stress and where coral is bleaching.",
     language: "TypeScript",
     year: "2026",
     kind: "climate",
-    note: "Started for a science project, and the data kept being interesting.",
+    tag: "climate",
+    note: "Started as a science project. The data kept being interesting.",
   },
   {
     name: "ecosim",
@@ -48,11 +53,12 @@ export const projects: Project[] = [
     owner: "aryasalem09",
     url: "https://github.com/aryasalem09/ecosim",
     description:
-      "An ecosystem simulation experiment for simple species interactions and emergent behavior.",
+      "An ecosystem toy: a few species, a few rules, and whatever they do to each other.",
     language: "Rust",
     year: "2025",
     kind: "simulation",
-    note: "Tiny systems are fun because simple rules start acting weird fast.",
+    tag: "simulation",
+    note: "Simple rules start acting weird fast. That's the fun part.",
   },
   {
     name: "Monte-Carlo-Pi-Estimator-",
@@ -60,11 +66,12 @@ export const projects: Project[] = [
     owner: "aryasalem09",
     url: "https://github.com/aryasalem09/Monte-Carlo-Pi-Estimator-",
     description:
-      "A compact Fortran implementation that estimates pi with random sampling.",
+      "Throw random darts at a square, count the ones that land in the circle, and out comes pi.",
     language: "Fortran",
     year: "2025",
     kind: "math",
-    note: "Mostly here because Fortran is funny and Monte Carlo is satisfying.",
+    tag: "fortran",
+    note: "Here because Fortran is funny and Monte Carlo is satisfying.",
   },
   {
     name: "webpage",
@@ -72,10 +79,11 @@ export const projects: Project[] = [
     owner: "slhstsa",
     url: "https://github.com/slhstsa/webpage",
     description:
-      "A TSA webmaster project site for the 2025–2026 school year.",
+      "The TSA webmaster project for the 2025–2026 year — a rubric, constraints, and a real deadline.",
     language: "JavaScript",
     year: "2026",
     kind: "webmaster",
-    note: "A school web project with rules, constraints, and a real deadline.",
+    tag: "webmaster",
+    note: "A school project with rules, which I didn't mind.",
   },
 ];

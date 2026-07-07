@@ -27,7 +27,7 @@ export const projects: Project[] = [
     owner: "aryasalem09",
     url: "https://github.com/aryasalem09/SLHS-HackClub-Website",
     description:
-      "The club site — meeting times, announcements, and somewhere to send new members when they ask what Hack Club is.",
+      "Where the club keeps its meeting times and announcements, and where new members land when they ask what Hack Club actually is.",
     language: "TypeScript",
     year: "2026",
     kind: "club",
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     owner: "slhstsa",
     url: "https://github.com/slhstsa/webpage",
     description:
-      "The TSA webmaster project for the 2025–2026 year — a rubric, constraints, and a real deadline.",
+      "The TSA webmaster project for the 2025–2026 year, judged against a real rubric with a real deadline.",
     language: "JavaScript",
     year: "2026",
     kind: "webmaster",

@@ -25,7 +25,7 @@ export default function CoverPage() {
         </p>
 
         <p className="mt-4 max-w-md font-note text-xl leading-snug text-ink-soft">
-          This is the messy version of the portfolio — the stuff taped to the inside of my
+          This is the messy version of the portfolio, the stuff taped to the inside of my
           notebook. Flip through it.
         </p>
 

@@ -3,7 +3,7 @@ import { tiltStyle } from "@/lib/scatter";
 
 const facts: { k: string; v: string }[] = [
   { k: "grade", v: "11th" },
-  { k: "runs", v: "the Hack Club" },
+  { k: "builds", v: "small web things" },
   { k: "plays", v: "string quartet" },
   { k: "into lately", v: "reef data" },
 ];
@@ -21,8 +21,8 @@ export default function AboutPage() {
             or a thing I got curious about and couldn&rsquo;t drop.
           </p>
           <p>
-            I like taking something tangled and making it legible. Right now that&rsquo;s sign-ups
-            and announcements for Hack Club, and a map of which reefs are bleaching.
+            I like taking something tangled and making it legible. Right now that&rsquo;s a map of
+            which reefs are bleaching, and whatever small site a club at school needs next.
           </p>
           <p>
             The rest is smaller: an ecosystem that misbehaves in Rust, pi estimated in Fortran for

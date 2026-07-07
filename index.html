@@ -17,17 +17,14 @@
         try {
           var stored = localStorage.getItem("theme");
 
-          if (stored === "dark") {
-            document.documentElement.classList.add("dark");
-          }
-
           if (stored === "light") {
             document.documentElement.classList.remove("dark");
+          } else {
+            // First-time visitors get night: the terminal glows behind the book.
+            document.documentElement.classList.add("dark");
           }
-
-          // No stored value: first-time visitors see light mode.
         } catch (error) {
-          /* default to light */
+          document.documentElement.classList.add("dark");
         }
       })();
     </script>

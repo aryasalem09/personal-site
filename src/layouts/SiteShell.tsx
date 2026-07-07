@@ -17,11 +17,8 @@ export default function SiteShell() {
         Skip to the book
       </a>
 
-      {/* the theme toggle floats like a lamp switch — always reachable, never a whole header */}
-      <div className="fixed right-3 top-3 z-40 flex items-center gap-2 rounded-full border-2 border-edge bg-paper/90 px-2 py-1 shadow-hard-sm backdrop-blur">
-        <span className="hidden pl-1.5 font-mono text-[0.65rem] uppercase tracking-wide text-ink-soft sm:inline">
-          desk lamp
-        </span>
+      {/* the desk-lamp switch floats top-right — always reachable, never a whole header */}
+      <div className="fixed right-3 top-3 z-40">
         <ThemeToggle />
       </div>
 

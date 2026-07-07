@@ -95,17 +95,51 @@ export default function Scrapbook({ pages, title, subtitle }: ScrapbookProps) {
     <ScrapbookNavContext.Provider value={nav}>
     <div className="site-container py-6 md:py-10">
       {/* the book object */}
-      <div className="mx-auto max-w-book">
+      <div className="relative mx-auto max-w-book">
+        {/* flanking page-turn buttons, in the desk margins (desktop) */}
+        {!flat ? (
+          <>
+            <button
+              type="button"
+              onClick={() => go(current - 1)}
+              disabled={current === 0}
+              aria-label="Turn back a page"
+              className="cursor-target absolute -left-6 top-1/2 z-20 hidden size-12 -translate-y-1/2 items-center justify-center rounded-full border-2 border-edge bg-paper text-ink shadow-hard transition enabled:hover:-translate-y-[calc(50%+2px)] enabled:hover:text-terracotta disabled:opacity-25 lg:inline-flex xl:-left-16"
+            >
+              <ChevronLeft className="size-6" />
+            </button>
+            <button
+              type="button"
+              onClick={() => go(current + 1)}
+              disabled={current === count - 1}
+              aria-label="Turn to the next page"
+              className="cursor-target absolute -right-6 top-1/2 z-20 hidden size-12 -translate-y-1/2 items-center justify-center rounded-full border-2 border-edge bg-paper text-ink shadow-hard transition enabled:hover:-translate-y-[calc(50%+2px)] enabled:hover:text-terracotta disabled:opacity-25 lg:inline-flex xl:-right-16"
+            >
+              <ChevronRight className="size-6" />
+            </button>
+          </>
+        ) : null}
         <div className="grid grid-cols-1 overflow-hidden rounded-lg shadow-[0_30px_80px_-30px_hsl(var(--edge)/0.8)] lg:grid-cols-[13.5rem_1fr]">
-          {/* cover board / spine — also the nav */}
-          <aside className="relative flex flex-col justify-between gap-6 border-b-2 border-edge bg-forest px-5 py-6 text-[hsl(44_46%_88%)] lg:border-b-0 lg:border-r-2">
+          {/* book cover / spine — also the nav */}
+          <aside className="book-cloth relative flex flex-col justify-between gap-6 border-b-2 border-edge px-5 py-6 text-[hsl(44_46%_88%)] lg:border-b-0 lg:border-r-2">
+            {/* binding shadow where the cover meets the page */}
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 right-0 hidden w-3 bg-gradient-to-l from-black/40 to-transparent lg:block"
+            />
+            {/* bookmark ribbon hanging over the top */}
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -top-1 right-7 z-10 hidden h-16 w-3 bg-rose shadow-[1px_2px_3px_rgba(0,0,0,.45)] lg:block"
+              style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%)" }}
+            />
             {/* stitched inner border */}
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-2 rounded-md border border-dashed border-[hsl(44_46%_88%/0.35)]"
+              className="pointer-events-none absolute inset-2 rounded-md border border-dashed border-[hsl(44_46%_88%/0.3)]"
             />
             <div className="relative">
-              <p className="font-marker text-2xl leading-tight text-[hsl(32_60%_66%)]">{title}</p>
+              <p className="font-marker emboss text-2xl leading-tight text-[hsl(32_62%_68%)]">{title}</p>
               {subtitle ? (
                 <p className="mt-1 font-hand text-lg leading-tight text-[hsl(44_46%_88%/0.75)]">{subtitle}</p>
               ) : null}
@@ -132,30 +166,13 @@ export default function Scrapbook({ pages, title, subtitle }: ScrapbookProps) {
             </div>
 
             <div className="relative flex items-center justify-between gap-2">
-              <div className="flex items-center gap-1">
-                <button
-                  type="button"
-                  onClick={() => go(current - 1)}
-                  disabled={flat || current === 0}
-                  aria-label="Previous page"
-                  className="cursor-target inline-flex size-8 items-center justify-center rounded-full border border-[hsl(44_46%_88%/0.4)] transition enabled:hover:bg-[hsl(44_46%_88%/0.15)] disabled:opacity-30"
-                >
-                  <ChevronLeft className="size-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => go(current + 1)}
-                  disabled={flat || current === count - 1}
-                  aria-label="Next page"
-                  className="cursor-target inline-flex size-8 items-center justify-center rounded-full border border-[hsl(44_46%_88%/0.4)] transition enabled:hover:bg-[hsl(44_46%_88%/0.15)] disabled:opacity-30"
-                >
-                  <ChevronRight className="size-4" />
-                </button>
-              </div>
+              <span className="hidden font-mono text-[0.7rem] uppercase tracking-wide text-[hsl(44_46%_88%/0.55)] lg:inline">
+                use ← → or the tabs
+              </span>
               <button
                 type="button"
                 onClick={() => setFlat((f) => !f)}
-                className="cursor-target font-mono text-[0.7rem] uppercase tracking-wide text-[hsl(44_46%_88%/0.7)] underline decoration-dotted underline-offset-4 transition hover:text-[hsl(44_46%_88%)]"
+                className="cursor-target font-mono text-[0.7rem] uppercase tracking-wide text-[hsl(44_46%_88%/0.75)] underline decoration-dotted underline-offset-4 transition hover:text-[hsl(44_46%_88%)]"
               >
                 {flat ? "flip view" : "read straight through"}
               </button>

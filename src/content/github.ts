@@ -22,19 +22,6 @@ export const githubProfile = {
 
 export const projects: Project[] = [
   {
-    name: "SLHS-HackClub-Website",
-    title: "SLHS Hack Club",
-    owner: "aryasalem09",
-    url: "https://github.com/aryasalem09/SLHS-HackClub-Website",
-    description:
-      "Where the club keeps its meeting times and announcements, and where new members land when they ask what Hack Club actually is.",
-    language: "TypeScript",
-    year: "2026",
-    kind: "club",
-    tag: "club site",
-    note: "The one I'd show first. It has an actual audience at school.",
-  },
-  {
     name: "coral-bleaching-tracker",
     title: "Coral Bleaching Tracker",
     owner: "aryasalem09",

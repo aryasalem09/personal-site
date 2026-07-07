@@ -19,11 +19,11 @@
     --amber: 32 55% 52%;
     --edge: 40 20% 13%;
 
-    --desk: 26 30% 7%;
-    --backdrop-veil: 26 34% 5%;
-    --terminal-tint: #c98a3e;
-    --terminal-opacity: 0.34;
-    --terminal-brightness: 0.46;
+    --desk: 38 44% 79%;
+    --backdrop-veil: 36 40% 74%;
+    --terminal-tint: #b7751f;
+    --terminal-brightness: 0.5;
+    --terminal-layer-opacity: 0.2;
 
     /* mapped legacy tokens so existing consumers keep working */
     --background: var(--desk);
@@ -45,11 +45,11 @@
     /* --- desk at night: dark warm desk, cool CRT glow, paper still cream --- */
     --paper: 44 44% 87%;
     --paper-aged: 42 40% 80%;
-    --desk: 220 30% 6%;
-    --backdrop-veil: 220 34% 4%;
-    --terminal-tint: #4fa3cc;
-    --terminal-opacity: 0.6;
-    --terminal-brightness: 0.52;
+    --desk: 26 28% 7%;
+    --backdrop-veil: 26 32% 4%;
+    --terminal-tint: #d99a45;
+    --terminal-brightness: 0.55;
+    --terminal-layer-opacity: 0.95;
     --border: 40 22% 44%;
     --denim: 207 53% 46%;
     --cursor-color: #e9c893;
@@ -180,6 +180,19 @@
       0% 3%, 6% 0%, 14% 3%, 23% 0%, 34% 3%, 46% 0%, 58% 3%, 70% 0%, 82% 3%, 92% 0%, 100% 3%,
       100% 97%, 93% 100%, 82% 97%, 71% 100%, 60% 97%, 48% 100%, 37% 97%, 26% 100%, 15% 97%, 6% 100%, 0% 97%
     );
+  }
+
+  /* ---------- book cover / cloth ---------- */
+  .book-cloth {
+    background-color: hsl(var(--forest));
+    background-image:
+      repeating-linear-gradient(90deg, hsl(0 0% 0% / 0.14) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(0deg, hsl(0 0% 100% / 0.03) 0 1px, transparent 1px 3px),
+      radial-gradient(120% 80% at 20% 0%, hsl(74 30% 40% / 0.35), transparent 60%);
+    box-shadow: inset 0 0 40px hsl(0 0% 0% / 0.35);
+  }
+  .emboss {
+    text-shadow: 1px 1px 0 hsl(0 0% 0% / 0.35), -0.5px -0.5px 0 hsl(0 0% 100% / 0.06);
   }
 
   /* ---------- flip book ---------- */

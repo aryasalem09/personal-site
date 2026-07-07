@@ -40,37 +40,40 @@ export default function TerminalBackdrop() {
 
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 bg-desk">
-      {enabled ? (
-        <Suspense fallback={null}>
-          <FaultyTerminal
-            key={`${theme.tint}-${theme.brightness}`}
-            scale={1.5}
-            gridMul={GRID_MUL}
-            digitSize={1.2}
-            timeScale={0.1}
-            scanlineIntensity={0.08}
-            glitchAmount={0.14}
-            flickerAmount={0.06}
-            noiseAmp={0.2}
-            chromaticAberration={0.06}
-            dither={0.35}
-            curvature={0.12}
-            tint={theme.tint}
-            mouseReact={false}
-            dpr={1}
-            pageLoadAnimation
-            brightness={theme.brightness}
+      {/* the terminal layer fades with the theme so the light desk shows through by day */}
+      <div className="absolute inset-0" style={{ opacity: "var(--terminal-layer-opacity, 0.9)" }}>
+        {enabled ? (
+          <Suspense fallback={null}>
+            <FaultyTerminal
+              key={`${theme.tint}-${theme.brightness}`}
+              scale={1.5}
+              gridMul={GRID_MUL}
+              digitSize={1.2}
+              timeScale={0.1}
+              scanlineIntensity={0.08}
+              glitchAmount={0.14}
+              flickerAmount={0.06}
+              noiseAmp={0.2}
+              chromaticAberration={0.06}
+              dither={0.35}
+              curvature={0.12}
+              tint={theme.tint}
+              mouseReact={false}
+              dpr={1}
+              pageLoadAnimation
+              brightness={theme.brightness}
+            />
+          </Suspense>
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(120% 90% at 50% 0%, hsl(var(--tan) / 0.28), transparent 55%), #14100a",
+            }}
           />
-        </Suspense>
-      ) : (
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(120% 90% at 50% 0%, hsl(var(--tan) / 0.18), transparent 55%), hsl(var(--desk))",
-          }}
-        />
-      )}
+        )}
+      </div>
 
       {/* soft vignette: darkens only the far corners so the terminal reads clearly elsewhere */}
       <div

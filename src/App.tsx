@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 
+import SeoHead from "@/components/SeoHead";
 import SiteShell from "@/layouts/SiteShell";
 import HomePage from "@/pages/HomePage";
 import ProjectsPage from "@/pages/ProjectsPage";
@@ -43,6 +44,7 @@ function ScrollManager() {
 export default function App() {
   return (
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <SeoHead />
       <ScrollManager />
       <Routes>
         <Route element={<SiteShell />}>

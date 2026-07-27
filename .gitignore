@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# Local credentials and OAuth state
+client_secret_*.json
+client_secrets.json
+service_account*.json
+token.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

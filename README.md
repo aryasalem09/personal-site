@@ -1,19 +1,17 @@
-# personal site
+# my personal site
 
-A small personal site for projects and quartet recordings.
+my personal site, built with TypeScript, React, Vite, Tailwind CSS, HTML, and CSS.
 
-Built with Vite, React, TypeScript, Tailwind, and two React Bits effects (desktop-only).
-
-## commands
+## local development
 
 ```bash
 npm install
-npm run dev      # local dev server
-npm run build    # type-check + production build
-npm run lint     # eslint
-npm run preview  # preview the production build
+npm run dev
 ```
 
-Videos are click-to-load. Enhanced effects are desktop-only and respect reduced-motion/device gates.
+## checks
 
-Content lives in `src/content/` (projects, performances).
+```bash
+npm run lint
+npm run build
+```

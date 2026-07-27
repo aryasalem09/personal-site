@@ -1,28 +1,19 @@
 export interface Performance {
   title: string;
-  artist: string;
   youtubeId: string;
-  // handwritten note under the record
-  note?: string;
 }
 
 export const performances: Performance[] = [
   {
-    title: "At Last",
-    artist: "Etta James",
+    title: "At Last by Etta James for String Quartet",
     youtubeId: "T1Q9R1zc20I",
-    note: "slow enough that every wrong note shows",
   },
   {
-    title: "House of the Rising Sun",
-    artist: "The Animals",
+    title: "House of the Rising Sun by The Animals for String Quartet",
     youtubeId: "1WjGAjKmmHc",
-    note: "somehow sounds bigger than four people",
   },
   {
-    title: "September",
-    artist: "Earth, Wind & Fire",
+    title: "September by Earth, Wind, Fire for String Quartet",
     youtubeId: "MzlFf6N3HI8",
-    note: "impossible to play this one and not smile",
   },
 ];

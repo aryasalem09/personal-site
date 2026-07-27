@@ -4,76 +4,93 @@
 
 @layer base {
   :root {
-    /* --- day desk (default): warm parchment, terminal a soft lamplight glow --- */
-    --paper: 44 48% 89%;
-    --paper-aged: 42 44% 82%;
-    --ink: 40 15% 14%;
-    --ink-soft: 36 14% 36%;
-
-    --olive: 76 29% 32%;
-    --forest: 92 38% 16%;
-    --tan: 32 60% 60%;
-    --terracotta: 28 67% 44%;
-    --rose: 349 49% 51%;
-    --denim: 210 51% 36%;
-    --amber: 32 55% 52%;
-    --edge: 40 20% 13%;
-
-    --desk: 38 44% 79%;
-    --backdrop-veil: 36 40% 74%;
-    --terminal-tint: #b7751f;
-    --terminal-brightness: 0.5;
-    --terminal-layer-opacity: 0.2;
-
-    /* mapped legacy tokens so existing consumers keep working */
-    --background: var(--desk);
-    --foreground: var(--ink);
-    --card: var(--paper);
-    --card-foreground: var(--ink);
-    --muted: 42 34% 78%;
-    --muted-foreground: 36 14% 38%;
-    --border: 40 22% 46%;
-    --input: 40 20% 40%;
-    --ring: 28 67% 44%;
-    --radius: 0.6rem;
-
-    --cursor-color: #4a3a24;
-    --cursor-target-color: #b05a24;
+    /* Warm editorial paper, ink text, and one electric-blue signal. */
+    --background: 42 38% 96%;
+    --foreground: 222 24% 11%;
+    --card: 42 40% 99%;
+    --card-foreground: 222 30% 14%;
+    --popover: 42 40% 99%;
+    --popover-foreground: 222 30% 14%;
+    --primary: 216 100% 43%;
+    --primary-foreground: 44 40% 97%;
+    --secondary: 44 22% 89%;
+    --secondary-foreground: 222 30% 14%;
+    --muted: 44 22% 89%;
+    --muted-foreground: 222 12% 41%;
+    --accent: 205 45% 91%;
+    --accent-foreground: 222 30% 14%;
+    --destructive: 0 62% 42%;
+    --destructive-foreground: 44 40% 97%;
+    --border: 42 16% 83%;
+    --input: 42 16% 78%;
+    --ring: 216 100% 43%;
+    --radius: 0.375rem;
+    --signal: 216 100% 43%;
+    --ember: 28 85% 42%;
+    --line: 220 18% 38%;
+    --shadow: 222 30% 20%;
+    --page-gutter: clamp(1.25rem, 4vw, 2.5rem);
+    --section-space: clamp(4.5rem, 10vw, 8rem);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --site-header-height: 4rem;
   }
 
   .dark {
-    /* --- desk at night: dark warm desk, cool CRT glow, paper still cream --- */
-    --paper: 44 44% 87%;
-    --paper-aged: 42 40% 80%;
-    --desk: 26 28% 7%;
-    --backdrop-veil: 26 32% 4%;
-    --terminal-tint: #d99a45;
-    --terminal-brightness: 0.55;
-    --terminal-layer-opacity: 0.95;
-    --border: 40 22% 44%;
-    --denim: 207 53% 46%;
-    --cursor-color: #e9c893;
-    --cursor-target-color: #6fa8d6;
-  }
-
-  * {
-    border-color: hsl(var(--border));
+    --background: 222 28% 8%;
+    --foreground: 42 22% 90%;
+    --card: 222 24% 11%;
+    --card-foreground: 42 22% 90%;
+    --popover: 222 24% 10%;
+    --popover-foreground: 42 22% 90%;
+    --primary: 203 72% 66%;
+    --primary-foreground: 222 28% 10%;
+    --secondary: 222 18% 16%;
+    --secondary-foreground: 42 22% 90%;
+    --muted: 222 18% 16%;
+    --muted-foreground: 220 12% 63%;
+    --accent: 222 18% 18%;
+    --accent-foreground: 42 22% 90%;
+    --destructive: 0 62% 52%;
+    --destructive-foreground: 42 22% 90%;
+    --border: 222 15% 21%;
+    --input: 222 15% 26%;
+    --ring: 203 72% 66%;
+    --signal: 203 72% 66%;
+    --ember: 34 82% 60%;
+    --line: 214 28% 72%;
+    --shadow: 222 40% 2%;
   }
 
   html {
     scroll-behavior: smooth;
+    background: hsl(var(--background));
+  }
+
+  @media (max-width: 639px) {
+    :root {
+      --site-header-height: 6.75rem;
+    }
+  }
+
+  @media (max-width: 359px) {
+    :root {
+      --site-header-height: 7.3125rem;
+    }
   }
 
   body {
-    @apply min-h-svh bg-desk font-note text-ink antialiased;
-    min-width: 320px;
+    @apply min-h-svh bg-background font-sans text-foreground antialiased;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background: hsl(var(--terracotta) / 0.28);
-    color: hsl(var(--ink));
+    background: hsl(var(--signal) / 0.22);
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 3px;
   }
 
   a {
@@ -98,157 +115,43 @@
 }
 
 @layer components {
+  .site-header {
+    min-height: var(--site-header-height);
+  }
+
+  .home-hero {
+    min-height: calc(100svh - var(--site-header-height));
+  }
+
+  .home-hero__inner {
+    display: flex;
+    min-height: inherit;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .home-section {
+    scroll-margin-top: var(--site-header-height);
+  }
+
   .site-container {
-    @apply mx-auto w-full max-w-site px-4 sm:px-6 md:px-8;
+    @apply mx-auto w-full max-w-site;
+    padding-inline: var(--page-gutter);
   }
 
-  /* ---------- paper surfaces ---------- */
-  .paper {
-    background-color: hsl(var(--paper));
-    background-image:
-      radial-gradient(120% 90% at 50% 0%, hsl(var(--paper) / 0) 60%, hsl(var(--edge) / 0.1) 100%),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
-    color: hsl(var(--ink));
+  .kicker {
+    @apply font-mono text-[11px] uppercase tracking-[0.28em] text-muted-foreground;
   }
 
-  .paper-aged {
-    background-color: hsl(var(--paper-aged));
-    background-image:
-      radial-gradient(140% 120% at 100% 0%, hsl(var(--tan) / 0.16), transparent 55%),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
-    color: hsl(var(--ink));
+  .chip {
+    @apply border-b border-border px-0.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground;
   }
 
-  /* ruled-line "journal" paper */
-  .paper-ruled {
-    background-image:
-      linear-gradient(hsl(var(--paper)) 0 0),
-      repeating-linear-gradient(hsl(var(--paper)) 0 30px, hsl(var(--olive) / 0.16) 30px 31px);
-  }
-
-  /* card stuck onto the page */
-  .card-paper {
-    @apply paper relative rounded-md border-2 border-edge shadow-hard;
-  }
-
-  /* ---------- tape ---------- */
-  .tape {
-    position: absolute;
-    width: 5.5rem;
-    height: 1.6rem;
-    background: hsl(var(--tan) / 0.62);
-    mix-blend-mode: multiply;
-    box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.35), inset 0 -1px 0 hsl(var(--edge) / 0.15);
-    clip-path: polygon(3% 0, 97% 4%, 100% 96%, 2% 100%);
-  }
-  .tape-rose { background: hsl(var(--rose) / 0.42); }
-  .tape-olive { background: hsl(var(--olive) / 0.4); }
-
-  /* ---------- pushpin ---------- */
-  .pin {
-    position: absolute;
-    width: 0.85rem;
-    height: 0.85rem;
-    border-radius: 999px;
-    background: radial-gradient(circle at 32% 30%, hsl(0 0% 100% / 0.9), hsl(var(--rose)) 42%, hsl(var(--rose) / 0.6) 100%);
-    box-shadow: 0 2px 3px hsl(var(--edge) / 0.5);
-  }
-  .pin-olive { background: radial-gradient(circle at 32% 30%, hsl(0 0% 100% / 0.85), hsl(var(--olive)) 45%, hsl(var(--forest)) 100%); }
-  .pin-amber { background: radial-gradient(circle at 32% 30%, hsl(0 0% 100% / 0.9), hsl(var(--tan)) 45%, hsl(var(--terracotta)) 100%); }
-
-  /* ---------- polaroid ---------- */
-  .polaroid {
-    @apply relative bg-[hsl(40_40%_97%)] p-2.5 pb-9 shadow-lift;
-    border: 1px solid hsl(var(--edge) / 0.25);
-  }
-
-  /* ---------- rubber stamp ---------- */
-  .stamp {
-    @apply font-marker uppercase tracking-wide;
-    color: hsl(var(--rose) / 0.82);
-    border: 2px solid hsl(var(--rose) / 0.6);
-    padding: 0.1rem 0.55rem;
-    border-radius: 0.25rem;
-    transform: rotate(-8deg);
-    mix-blend-mode: multiply;
-  }
-  .stamp-olive { color: hsl(var(--forest) / 0.82); border-color: hsl(var(--olive) / 0.65); }
-
-  /* torn newspaper-clipping edge (cheap, crisp text) */
-  .clipping {
-    clip-path: polygon(
-      0% 3%, 6% 0%, 14% 3%, 23% 0%, 34% 3%, 46% 0%, 58% 3%, 70% 0%, 82% 3%, 92% 0%, 100% 3%,
-      100% 97%, 93% 100%, 82% 97%, 71% 100%, 60% 97%, 48% 100%, 37% 97%, 26% 100%, 15% 97%, 6% 100%, 0% 97%
-    );
-  }
-
-  /* ---------- book cover / cloth ---------- */
-  .book-cloth {
-    background-color: hsl(var(--forest));
-    background-image:
-      repeating-linear-gradient(90deg, hsl(0 0% 0% / 0.14) 0 1px, transparent 1px 3px),
-      repeating-linear-gradient(0deg, hsl(0 0% 100% / 0.03) 0 1px, transparent 1px 3px),
-      radial-gradient(120% 80% at 20% 0%, hsl(74 30% 40% / 0.35), transparent 60%);
-    box-shadow: inset 0 0 40px hsl(0 0% 0% / 0.35);
-  }
-  .emboss {
-    text-shadow: 1px 1px 0 hsl(0 0% 0% / 0.35), -0.5px -0.5px 0 hsl(0 0% 100% / 0.06);
-  }
-
-  /* ---------- flip book ---------- */
-  .book-stage {
-    perspective: 2200px;
-  }
-  .leaf {
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-  }
-
-  /* margin annotation underline in marker */
-  .marker-underline {
-    background-image: linear-gradient(hsl(var(--terracotta) / 0.5), hsl(var(--terracotta) / 0.5));
-    background-position: 0 92%;
-    background-repeat: no-repeat;
-    background-size: 100% 0.28em;
+  .icon-button {
+    @apply inline-flex size-9 items-center justify-center rounded-sm border border-transparent bg-transparent text-muted-foreground outline-none transition-colors hover:border-border hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
   }
 
   .quiet-link {
-    @apply rounded-sm underline decoration-[hsl(var(--olive)/0.5)] decoration-[0.1em] underline-offset-[0.22em] outline-none transition-colors hover:decoration-terracotta focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-paper;
-  }
-}
-
-@layer utilities {
-  /* Fraunces display: soft, wonky, high optical size — a letterpress-book voice */
-  .font-display {
-    font-family: "Fraunces Variable", "Fraunces", Georgia, serif;
-    font-variation-settings: "opsz" 120, "SOFT" 60, "WONK" 1;
-    font-weight: 560;
-    letter-spacing: -0.01em;
-  }
-  .headline {
-    @apply font-display text-balance leading-[1.02];
-  }
-  .denim-link {
-    color: hsl(var(--denim));
-    text-decoration: underline;
-    text-decoration-color: hsl(var(--denim) / 0.4);
-    text-underline-offset: 0.18em;
-    transition: text-decoration-color 0.2s ease;
-  }
-  .denim-link:hover {
-    text-decoration-color: hsl(var(--denim));
-  }
-  /* seeded tilt: set --r inline */
-  .tilt {
-    transform: rotate(var(--r, 0deg));
-  }
-  .tilt-hover {
-    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.2s ease;
-  }
-  .tilt-hover:hover {
-    transform: rotate(0deg) translateY(-3px);
-  }
-  .text-shadow-paper {
-    text-shadow: 2px 2px 0 hsl(var(--edge) / 0.18);
+    @apply rounded-sm underline decoration-border decoration-[0.08em] underline-offset-[0.2em] outline-none transition-colors hover:decoration-signal focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
   }
 }

@@ -1,17 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
+function readTheme() {
+  return document.documentElement.classList.contains("dark");
+}
+
 export default function ThemeToggle() {
-  const [dark, setDark] = useState(() => document.documentElement.classList.contains("dark"));
+  const [dark, setDark] = useState(readTheme);
+
+  useEffect(() => {
+    const syncTheme = (event: StorageEvent) => {
+      if (event.key !== "theme" || event.newValue === null) return;
+
+      const next = event.newValue === "dark";
+      document.documentElement.classList.toggle("dark", next);
+      document.documentElement.style.colorScheme = next ? "dark" : "light";
+      setDark(next);
+    };
+    window.addEventListener("storage", syncTheme);
+    return () => window.removeEventListener("storage", syncTheme);
+  }, []);
 
   const toggle = () => {
     const next = !dark;
     setDark(next);
     document.documentElement.classList.toggle("dark", next);
+    document.documentElement.style.colorScheme = next ? "dark" : "light";
+
     try {
       localStorage.setItem("theme", next ? "dark" : "light");
     } catch {
-      /* private mode — theme just won't persist */
+      // Private browsing can disable storage; the in-session theme still updates.
     }
   };
 
@@ -19,22 +38,11 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
+      aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
       aria-pressed={dark}
-      aria-label={dark ? "Turn the desk lamp on (switch to day)" : "Turn the desk lamp off (switch to night)"}
-      className="cursor-target group inline-flex items-center gap-2 rounded-full border-2 border-edge bg-paper/95 px-3 py-1.5 shadow-hard-sm outline-none backdrop-blur transition hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-ring"
+      className="inline-flex size-7 items-center justify-center text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
     >
-      <span className="inline-flex size-5 items-center justify-center text-terracotta">
-        {dark ? <Moon className="size-4" /> : <Sun className="size-4" />}
-      </span>
-      <span className="font-mono text-[0.65rem] uppercase tracking-wide text-ink-soft">
-        desk lamp
-      </span>
-      <span
-        aria-hidden="true"
-        className="font-mono text-[0.65rem] font-medium uppercase tracking-wide text-terracotta"
-      >
-        {dark ? "night" : "day"}
-      </span>
+      {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
     </button>
   );
 }

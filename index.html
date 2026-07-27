@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arya Salem — code, climate data, and quartet strings</title>
+    <title>Arya Salem — software, science, and string quartets</title>
     <meta
       name="description"
-      content="Personal site of Arya Salem: a high school developer building club websites, climate trackers, and ecosystem simulations — and playing in a string quartet on the side."
+      content="Arya Salem is a high-school senior exploring biology, chemistry, neuroscience, and software through websites, data projects, simulations, and music."
     />
     <link
       rel="icon"
@@ -16,15 +16,11 @@
       (function () {
         try {
           var stored = localStorage.getItem("theme");
-
-          if (stored === "light") {
-            document.documentElement.classList.remove("dark");
-          } else {
-            // First-time visitors get night: the terminal glows behind the book.
-            document.documentElement.classList.add("dark");
-          }
+          var dark = stored === "dark";
+          document.documentElement.classList.toggle("dark", dark);
+          document.documentElement.style.colorScheme = dark ? "dark" : "light";
         } catch (error) {
-          document.documentElement.classList.add("dark");
+          /* default to light */
         }
       })();
     </script>

@@ -14,8 +14,8 @@ export default function BlogIndexPage() {
     <section className="site-container py-20 md:py-28">
       <div className="max-w-3xl border-t border-border pt-5">
         <p className="kicker">Notebook / writing</p>
-        <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.04] tracking-[-0.035em] md:text-6xl">Notes from the workbench.</h1>
-        <p className="mt-5 text-pretty leading-7 text-muted-foreground md:text-lg">Occasional field notes on science, software, and the questions worth following.</p>
+        <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.04] tracking-[-0.035em] md:text-6xl">My Blog!</h1>
+        <p className="mt-5 text-pretty leading-7 text-muted-foreground md:text-lg">Anything random I feel like reviewing, talking about.</p>
       </div>
 
       {blogPosts.length ? (

@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 
 import SeoHead from "@/components/SeoHead";
 import SiteShell from "@/layouts/SiteShell";
+import BlogIndexPage from "@/pages/BlogIndexPage";
+import BlogPostPage from "@/pages/BlogPostPage";
 import HomePage from "@/pages/HomePage";
 import ProjectsPage from "@/pages/ProjectsPage";
 
@@ -41,18 +43,28 @@ function ScrollManager() {
   return null;
 }
 
-export default function App() {
+export function AppContent() {
   return (
-    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <>
       <SeoHead />
       <ScrollManager />
       <Routes>
         <Route element={<SiteShell />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/blog" element={<BlogIndexPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <AppContent />
     </BrowserRouter>
   );
 }

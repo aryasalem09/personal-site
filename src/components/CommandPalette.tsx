@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ExternalLink, FileText, Home, Mail, Music, Search, Send, Sparkles, User } from "lucide-react";
+import { BookOpenText, ExternalLink, FileText, Home, Mail, Music, Search, Send, Sparkles, User } from "lucide-react";
 
 import {
   CommandDialog,
@@ -23,6 +23,7 @@ const navActions = [
   { label: "About", value: "about", href: "/#about", icon: User },
   { label: "Contact", value: "contact", href: "/#contact", icon: Send },
   { label: "More projects", value: "more-projects", href: "/projects", icon: FileText },
+  { label: "Blog", value: "blog", href: "/blog", icon: BookOpenText },
 ];
 
 export default function CommandPalette() {

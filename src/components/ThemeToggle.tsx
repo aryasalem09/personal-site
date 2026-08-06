@@ -6,9 +6,11 @@ function readTheme() {
 }
 
 export default function ThemeToggle() {
-  const [dark, setDark] = useState(readTheme);
+  const [dark, setDark] = useState(false);
 
   useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setDark(readTheme()));
+
     const syncTheme = (event: StorageEvent) => {
       if (event.key !== "theme" || event.newValue === null) return;
 
@@ -18,7 +20,10 @@ export default function ThemeToggle() {
       setDark(next);
     };
     window.addEventListener("storage", syncTheme);
-    return () => window.removeEventListener("storage", syncTheme);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("storage", syncTheme);
+    };
   }, []);
 
   const toggle = () => {

@@ -160,4 +160,28 @@
   .quiet-link {
     @apply rounded-sm underline decoration-border decoration-[0.08em] underline-offset-[0.2em] outline-none transition-colors hover:decoration-signal focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
   }
+
+  .blog-prose table {
+    @apply my-8 w-full border-collapse text-left text-sm;
+  }
+
+  .blog-prose th {
+    @apply border-b border-foreground px-3 py-2 font-semibold;
+  }
+
+  .blog-prose td {
+    @apply border-b border-border px-3 py-2 align-top;
+  }
+
+  .blog-prose input[type="checkbox"] {
+    @apply mr-2 accent-signal;
+  }
+
+  .blog-prose pre code {
+    @apply bg-transparent p-0;
+  }
+
+  .blog-prose strong {
+    @apply font-semibold;
+  }
 }

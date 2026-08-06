@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Generated blog pages and content manifest (rebuilt from Markdown posts)
+/blog/
+/src/content/blog.generated.ts
+
 # Local credentials and OAuth state
 client_secret_*.json
 client_secrets.json

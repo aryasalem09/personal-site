@@ -15,3 +15,13 @@ npm run dev
 npm run lint
 npm run build
 ```
+
+## writing
+
+Create a local draft with:
+
+```bash
+npm run new:post -- "My post title"
+```
+
+See [BLOGGING.md](./BLOGGING.md) for the full Markdown, image, preview, and publishing workflow.

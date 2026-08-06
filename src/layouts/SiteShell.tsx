@@ -89,6 +89,7 @@ function HomeNavigation() {
 export default function SiteShell() {
   const location = useLocation();
   const isProjects = location.pathname === "/projects";
+  const isBlog = location.pathname === "/blog" || location.pathname.startsWith("/blog/");
 
   return (
     <div className="relative flex min-h-svh flex-col">
@@ -126,6 +127,15 @@ export default function SiteShell() {
               Resume
             </a>
             <Link
+              to="/blog"
+              aria-current={isBlog ? "page" : undefined}
+              className={`inline-flex border-b border-transparent py-1.5 outline-none transition-colors hover:border-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+                isBlog ? "border-foreground text-foreground" : "text-muted-foreground"
+              }`}
+            >
+              Blog
+            </Link>
+            <Link
               to="/projects"
               aria-current={isProjects ? "page" : undefined}
               className={`inline-flex border-b border-transparent py-1.5 outline-none transition-colors hover:border-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
@@ -159,7 +169,7 @@ export default function SiteShell() {
 
       <footer className="border-t border-border">
         <div className="site-container flex flex-col gap-2 py-6 text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {new Date().getFullYear()} Arya Salem</p>
+          <p suppressHydrationWarning>&copy; {new Date().getFullYear()} Arya Salem</p>
         </div>
       </footer>
     </div>

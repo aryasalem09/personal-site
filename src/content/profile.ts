@@ -24,14 +24,11 @@ export const researchExperience: readonly ResearchEntry[] = [
     verb: "Trace",
     title: "Finding neurons in the noise",
     organization: "Texas A&M University",
-    role: "CURES Research Volunteer · Lillvis Research Group",
+    role: "CUREs Research Volunteer · Lillvis Research Group",
     period: "2026 — present",
     summary:
-      "I trace and segment neurons through 3D expansion-microscopy image stacks, checking every structure from multiple angles and flagging uncertain boundaries for lab review instead of guessing.",
-    evidence: [
-      { value: "3D", label: "expansion-microscopy stacks" },
-      { value: "XY · YZ · XZ", label: "quality-control views" },
-    ],
+      "I trace and segment neurons in WEBKNOSSOS through 3D expansion-microscopy stacks, using XY, YZ, and XZ views to flag gaps, spillover, and uncertain boundaries. These quality-controlled annotations support neural-circuit reconstruction.",
+    evidence: [],
   },
   {
     id: "pacific-coral",
@@ -40,13 +37,13 @@ export const researchExperience: readonly ResearchEntry[] = [
     verb: "Model",
     title: "Mapping where Pacific corals may persist",
     organization: "The University of Texas at Austin",
-    role: "Student Researcher · Pacific Coral Modeling",
+    role: "Student Researcher · Matz Lab",
     period: "Apr 2026 — present",
     summary:
-      "I built a reproducible geospatial pipeline that ranks relative habitat suitability for Pacific corals while keeping leakage, sampling bias, and provenance visible in the result.",
+      "I built a reproducible geospatial ML pipeline that ranks relative habitat suitability across 10 coral species and 2,420 reef cells, with spatial CV, source balancing, leakage safeguards, and negative controls. A manuscript is in development with a 2027 publication target; results are rankings, not probabilities.",
     evidence: [
-      { value: "10", label: "coral species" },
-      { value: "2,420", label: "reef cells" },
+      { value: "74", label: "predictors" },
+      { value: "4,970", label: "model rows" },
       { value: "131", label: "automated tests" },
     ],
   },

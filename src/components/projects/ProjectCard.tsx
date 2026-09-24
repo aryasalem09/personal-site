@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUpRight, Pause, Play } from "lucide-react";
+import { ArrowUpRight, Music2, Pause, Play, UsersRound } from "lucide-react";
 
 import type { Project } from "@/content/github";
 import { cn } from "@/lib/utils";
@@ -18,12 +18,50 @@ function ProjectMeta({ project }: { project: Project }) {
         <dd className="mt-1.5 text-sm">{project.tags[0] ?? project.status ?? "Project"}</dd>
       </div>
       <div>
-        <dt className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">Tools</dt>
+        <dt className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">{project.language ? "Tools" : "Features"}</dt>
         <dd className="mt-1.5 text-sm leading-5">
           {[project.language, ...project.tags.slice(1, 3)].filter(Boolean).join(", ")}
         </dd>
       </div>
     </dl>
+  );
+}
+
+function ProjectPreview({ project }: { project: Project }) {
+  const title = project.title ?? project.name;
+  const isBrassTune = project.name === "brasstune";
+
+  return (
+    <div className="relative flex aspect-video overflow-hidden bg-foreground px-5 py-4 text-background" aria-hidden="true">
+      <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] [background-size:28px_28px]" />
+      <div className="relative flex w-full flex-col justify-between">
+        <div className="flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.2em] text-background/60">
+          <span>{isBrassTune ? "Practice companion" : "Shared AI workspace"}</span>
+          {isBrassTune ? <Music2 className="size-4" aria-hidden="true" /> : <UsersRound className="size-4" aria-hidden="true" />}
+        </div>
+        {isBrassTune ? (
+          <div className="mx-auto flex size-20 items-center justify-center rounded-full border border-background/40 sm:size-28">
+            <div className="text-center">
+              <p className="font-mono text-3xl tracking-[-0.08em]">+04</p>
+              <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.18em] text-background/60">cents</p>
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-3 gap-2">
+            {["Thread", "Context", "Sync"].map((label, index) => (
+              <div key={label} className="border border-background/35 bg-background/10 p-2.5">
+                <span className="block size-1.5 rounded-full bg-signal" />
+                <p className="mt-5 font-mono text-[9px] uppercase tracking-[0.14em] text-background/70">0{index + 1} {label}</p>
+              </div>
+            ))}
+          </div>
+        )}
+        <div className="flex items-end justify-between">
+          <p className="text-xl font-semibold tracking-[-0.035em]">{title}</p>
+          <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-background/60">{project.year}</p>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -95,9 +133,7 @@ export default function ProjectCard({ project, featured = false, className }: Pr
                 </button>
               ) : null}
             </>
-          ) : (
-            <div className="aspect-video" aria-hidden="true" />
-          )}
+          ) : <ProjectPreview project={project} />}
         </div>
 
         <div className="md:col-span-4">
@@ -125,7 +161,7 @@ export default function ProjectCard({ project, featured = false, className }: Pr
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 outline-none transition-colors hover:text-signal focus-visible:ring-2 focus-visible:ring-ring"
             >
-              Source <ArrowUpRight className="size-3.5" />
+              {project.urlLabel ?? "Source"} <ArrowUpRight className="size-3.5" />
             </a>
           </div>
         </div>
@@ -164,7 +200,7 @@ export default function ProjectCard({ project, featured = false, className }: Pr
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 outline-none transition-colors hover:text-signal focus-visible:ring-2 focus-visible:ring-ring"
           >
-            Source <ArrowUpRight className="size-3.5" />
+            {project.urlLabel ?? "Source"} <ArrowUpRight className="size-3.5" />
           </a>
         </div>
       </div>

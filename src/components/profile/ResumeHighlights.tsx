@@ -52,9 +52,6 @@ export default function ResumeHighlights() {
           <h3 className="mt-4 text-balance text-3xl font-semibold leading-[1.05] tracking-[-0.045em] md:text-4xl">
             Here are a few things I've loved working on.
           </h3>
-          <p className="mt-5 max-w-md text-base leading-7 text-muted-foreground">
-            Pick a thread. I&apos;ll show you the question, the work, and the bit that made it worth doing.
-          </p>
 
           <button
             type="button"
@@ -136,14 +133,16 @@ export default function ResumeHighlights() {
           <div className="p-5 sm:p-7 md:col-span-8 md:p-9">
             <p className="max-w-3xl text-lg leading-8 tracking-[-0.01em] sm:text-xl sm:leading-9">{active.summary}</p>
 
-            <dl className="mt-8 grid border-y border-border sm:grid-cols-3">
-              {active.evidence.map((item) => (
-                <div key={item.label} className="border-b border-border py-4 last:border-b-0 sm:border-b-0 sm:border-r sm:px-4 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0">
-                  <dt className="text-lg font-semibold tracking-[-0.025em] text-signal">{item.value}</dt>
-                  <dd className="mt-1 text-xs leading-5 text-muted-foreground">{item.label}</dd>
-                </div>
-              ))}
-            </dl>
+            {active.evidence.length > 0 ? (
+              <dl className="mt-8 grid border-y border-border sm:grid-cols-3">
+                {active.evidence.map((item) => (
+                  <div key={item.label} className="border-b border-border py-4 last:border-b-0 sm:border-b-0 sm:border-r sm:px-4 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0">
+                    <dt className="text-lg font-semibold tracking-[-0.025em] text-signal">{item.value}</dt>
+                    <dd className="mt-1 text-xs leading-5 text-muted-foreground">{item.label}</dd>
+                  </div>
+                ))}
+              </dl>
+            ) : null}
 
           </div>
         </div>

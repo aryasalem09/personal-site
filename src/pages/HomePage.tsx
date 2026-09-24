@@ -8,7 +8,7 @@ import { performances } from "@/content/performances";
 import { resumeHref } from "@/content/profile";
 
 const heroIndex = [
-  ["01", "Work", "Websites, climate tools, and simulations", "#work"],
+  ["01", "Work", "Team workspaces, climate tools, and music apps", "#work"],
   ["02", "About", "Science, software, and the questions between them", "#about"],
   ["03", "Music", "Three string-quartet recordings", "#music"],
   ["04", "Contact", "Discord, email, or GitHub", "#contact"],

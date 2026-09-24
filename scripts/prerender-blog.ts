@@ -29,6 +29,8 @@ export async function prerenderBlog() {
   if (!existsSync(entryPath)) throw new Error(`Missing SSR entry: ${entryPath}`);
   const entry = (await import(pathToFileURL(entryPath).href)) as ServerEntry;
   const posts = (await getBlogPosts()).filter((post) => !post.draft);
+  await prerenderRoute(entry, "/");
+  await prerenderRoute(entry, "/projects");
   await prerenderRoute(entry, "/blog");
   for (const post of posts) await prerenderRoute(entry, `/blog/${post.slug}`);
   await fs.writeFile(path.join(DIST_DIRECTORY, "sitemap.xml"), sitemapXml(posts), "utf8");
@@ -37,5 +39,5 @@ export async function prerenderBlog() {
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.meta.filename)) {
   const posts = await prerenderBlog();
-  console.log(`Prerendered /blog and ${posts.length} published post route(s).`);
+  console.log(`Prerendered /, /projects, /blog, and ${posts.length} published post route(s).`);
 }

@@ -29,7 +29,7 @@ function getRouteMetadata(pathname: string): RouteMetadata {
     return {
       title: "Arya Salem — software, science, and string quartets",
       description:
-        "Arya Salem is a high-school senior exploring biology, chemistry, neuroscience, and software through websites, data projects, simulations, and music.",
+        "Arya Salem builds software and research tools, including Worktree and BrassTune, while exploring biology, chemistry, neuroscience, and string quartet music.",
       canonicalUrl: `${SITE_ORIGIN}/`,
       indexable: true,
       kind: "home",
@@ -39,7 +39,7 @@ function getRouteMetadata(pathname: string): RouteMetadata {
   if (pathname === "/projects") {
     return {
       title: "Projects — Arya Salem",
-      description: "Selected software, research, data visualization, and simulation projects by Arya Salem.",
+      description: "Selected work by Arya Salem, including Worktree, BrassTune, research tools, data visualizations, and simulations.",
       canonicalUrl: `${SITE_ORIGIN}/projects`,
       indexable: true,
       kind: "projects",
@@ -133,7 +133,18 @@ function getStructuredData(metadata: RouteMetadata) {
         author: { "@id": `${SITE_ORIGIN}/#person` },
         isPartOf: { "@id": `${SITE_ORIGIN}/#website` },
       }
-    : metadata.kind === "blog" || metadata.kind === "projects"
+      : metadata.kind === "home"
+        ? {
+            "@type": "ProfilePage",
+            "@id": `${metadata.canonicalUrl}#page`,
+            url: metadata.canonicalUrl,
+            name: metadata.title,
+            description: metadata.description,
+            inLanguage: "en-US",
+            mainEntity: { "@id": `${SITE_ORIGIN}/#person` },
+            isPartOf: { "@id": `${SITE_ORIGIN}/#website` },
+          }
+        : metadata.kind === "blog" || metadata.kind === "projects"
       ? {
           "@type": metadata.kind === "blog" ? "Blog" : "CollectionPage",
           "@id": `${metadata.canonicalUrl}#page`,

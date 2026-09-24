@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ProjectCard from "@/components/projects/ProjectCard";
 import { projects } from "@/content/github";
 
-const selectedProjectNames = ["slhs-tsa-website", "coral-bleaching-tracker", "ecosim"];
+const selectedProjectNames = ["slhs-tsa-website", "coral-bleaching-tracker", "worktree", "brasstune"];
 
 export default function SelectedWork() {
   const selectedProjects = selectedProjectNames

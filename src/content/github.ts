@@ -6,6 +6,7 @@ export type Project = {
   owner: string;
   url: string;
   liveUrl?: string;
+  urlLabel?: string;
   preview?: {
     src: string;
     alt: string;
@@ -58,6 +59,42 @@ export const projects: Project[] = [
     year: "2026",
   },
   {
+    name: "worktree",
+    title: "Worktree",
+    owner: "Worktree",
+    url: "https://tryworktree.com",
+    urlLabel: "Visit Worktree",
+    preview: {
+      src: "/projects/worktree-website.webp",
+      alt: "Worktree website demo showing a shared agent conversation beside a code review",
+      width: 1280,
+      height: 720,
+    },
+    description: "As Co-Founder & CTO, I’m building a desktop workspace for teams using AI coding agents, with shared threads and context across computers and an account-free local mode.",
+    tags: ["AI collaboration", "Desktop workspace", "Team context"],
+    featured: true,
+    status: "Active",
+    year: "Jul 2026 — present",
+  },
+  {
+    name: "brasstune",
+    title: "BrassTune",
+    owner: "Arya Salem & Kelvin Guo",
+    url: "https://apps.apple.com/us/app/brasstune/id6795688588",
+    urlLabel: "View on the App Store",
+    preview: {
+      src: "/projects/brasstune-app-store.webp",
+      alt: "BrassTune App Store screenshots showing practice routines, live tuning, and score practice",
+      width: 1600,
+      height: 900,
+    },
+    description: "Co-developed with Kelvin Guo, this free iPhone and iPad brass practice app has live tuning, transposition-aware profiles, practice tools, and local history.",
+    tags: ["Music practice", "iPhone & iPad", "Live tuning"],
+    featured: true,
+    status: "Active",
+    year: "Aug 2026",
+  },
+  {
     name: "ecosim",
     owner: "aryasalem09",
     url: "https://github.com/aryasalem09/ecosim",
@@ -71,7 +108,6 @@ export const projects: Project[] = [
     },
     language: "Rust",
     tags: ["Simulation", "Systems", "Ecology"],
-    featured: true,
     status: "Experiment",
     year: "2025",
   },
@@ -85,28 +121,6 @@ export const projects: Project[] = [
     tags: ["Numerical methods", "Monte Carlo", "Fortran"],
     status: "Experiment",
     year: "2025",
-  },
-  {
-    name: "mathlify",
-    title: "Mathify",
-    owner: "aryasalem09",
-    url: "https://github.com/aryasalem09/mathlify",
-    description: "A TypeScript app for student labs and an admin dashboard, backed by Supabase.",
-    language: "TypeScript",
-    tags: ["Education", "Student labs", "Admin dashboard", "Supabase"],
-    status: "Active",
-    year: "2026",
-  },
-  {
-    name: "PolyShield-App",
-    title: "PolyShield App",
-    owner: "aryasalem09",
-    url: "https://github.com/aryasalem09/PolyShield-App",
-    description: "A TypeScript security and privacy-focused application built with Next.js and Supabase.",
-    language: "TypeScript",
-    tags: ["Security & privacy", "Next.js", "Supabase"],
-    status: "Active",
-    year: "2026",
   },
   {
     name: "EventImpactModel",

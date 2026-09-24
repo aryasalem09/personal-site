@@ -18,7 +18,7 @@ export default function ProjectsPage() {
           More things I&apos;ve built.
         </h1>
         <p className="mt-5 text-pretty leading-7 text-muted-foreground md:text-lg">
-          A few projects beyond the three featured on the homepage, from student tools to simulations and native apps.
+          More projects beyond those featured on the homepage, from student tools to simulations and native apps.
         </p>
         <p className="mt-7 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
           {`${indexProjects.length} repositories / ${languages.join(" / ")}`}
@@ -38,7 +38,7 @@ export default function ProjectsPage() {
             GitHub activity
           </h2>
           <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
-            A live, explorable view of the public contribution activity on my GitHub profile.
+            An automatically refreshed view of the contribution activity visible on my GitHub profile.
           </p>
         </div>
 
